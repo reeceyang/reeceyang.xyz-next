@@ -19,7 +19,7 @@ export default function RootLayout({
     <html data-theme="retro" lang="en">
       <body className={inter.className}>
         <Header />
-        {children}
+        <div className="overflow-clip">{children}</div>
         <Footer />
       </body>
     </html>

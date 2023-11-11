@@ -20,11 +20,11 @@ export default async function Home() {
         <div className="hero min-h-[80vh] bg-[#ffffffcc]">
           <div className="hero-content flex-col lg:flex-row">
             <div className="card bg-base-100 shadow-xl">
-              <div className="card-body p-12 flex flex-row">
+              <div className="card-body md:p-12 flex flex-row flex-wrap md:gap-2 md:flex-nowrap">
                 <div>
                   <h1 className="text-5xl font-bold">Hi, I’m Reece!</h1>
-                  <div className="prose p-6">
-                    <ul className="text-xl">
+                  <div className="prose md:p-6">
+                    <ul className="sm:text-xl">
                       <li>
                         I&rsquo;m an undergraduate student at the{" "}
                         <strong>Massachusetts Institute of Technology</strong>{" "}
@@ -57,7 +57,7 @@ export default async function Home() {
                   </div>
                 </div>
 
-                <div className="my-auto">
+                <div className="m-auto">
                   <Image
                     className="mask mask-circle"
                     src={"/profile_square.jpg"}
@@ -69,8 +69,8 @@ export default async function Home() {
               </div>
             </div>
             <div className="">
-              <Link href={`/bobaboss`}>
-                <div className="card w-96 bg-base-200 shadow-xl relative -top-32 z-10 -left-24 transition hover:translate-x-2 hover:-translate-y-2">
+              <Link href={`/projects/bobaboss`}>
+                <div className="card w-96 bg-base-200 shadow-xl relative lg:-top-32 lg:z-10 lg:-left-24 -left-4 transition hover:translate-x-2 hover:-translate-y-2">
                   <div className="card-body">
                     <h2 className="card-title">
                       BobaBoss
@@ -89,11 +89,11 @@ export default async function Home() {
                 </div>
               </Link>
               <Link href={`/${newestPost.slug}`}>
-                <div className="card w-96 bg-base-200 shadow-xl relative top-32 -left-48 z-10 transition hover:translate-x-2 hover:-translate-y-2">
+                <div className="card w-96 bg-base-200 shadow-xl relative top-8 lg:top-32 lg:-left-48 z-10 transition hover:translate-x-2 hover:-translate-y-2">
                   <div className="card-body">
                     <h2 className="card-title">
                       {newestPost.title}
-                      <div className="badge badge-secondary">Blog</div>
+                      <div className="badge badge-accent">Blog</div>
                     </h2>
                     <p className="line-clamp-2">{newestPost.excerpt}</p>
                   </div>
