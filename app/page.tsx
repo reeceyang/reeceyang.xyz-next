@@ -39,14 +39,18 @@ export default async function Home() {
                     </ul>
                   </div>
                   <div className="flex flex-row gap-6 w-fit m-auto">
+                    <Link href="/Reece_Yang_Resume.pdf">
+                      <button className="btn">
+                        Resume{" "}
+                        <FontAwesomeIcon className="w-6 h-6" icon={faFile} />
+                      </button>
+                    </Link>
+                    <Link href="mailto:rya@mit.edu">
                     <button className="btn">
-                      Resume{" "}
-                      <FontAwesomeIcon className="w-6 h-6" icon={faFile} />
-                    </button>
-                    <button className="btn">
-                      Email{" "}
+                      rya@mit.edu{" "}
                       <FontAwesomeIcon className="w-6 h-6" icon={faEnvelope} />
                     </button>
+                    </Link>
                   </div>
                 </div>
 
@@ -63,23 +67,23 @@ export default async function Home() {
             </div>
             <div className="">
               <Link href={`/bobaboss`}>
-              <div className="card w-96 bg-base-200 shadow-xl relative -top-32 z-10 -left-24 transition hover:translate-x-2 hover:-translate-y-2">
-                <div className="card-body">
-                  <h2 className="card-title">
-                    BobaBoss
-                    <div className="badge badge-primary">Project</div>
-                  </h2>
-                  <p>
-                    Find the best boba in Boston! Review aggregation web app
-                    that lets you explore individual boba flavors across
-                    different shops.
-                  </p>
-                  <div className="card-actions justify-end">
-                    <div className="badge badge-outline">React</div>
-                    <div className="badge badge-outline">MongoDB</div>
+                <div className="card w-96 bg-base-200 shadow-xl relative -top-32 z-10 -left-24 transition hover:translate-x-2 hover:-translate-y-2">
+                  <div className="card-body">
+                    <h2 className="card-title">
+                      BobaBoss
+                      <div className="badge badge-primary">Project</div>
+                    </h2>
+                    <p>
+                      Find the best boba in Boston! Review aggregation web app
+                      that lets you explore individual boba flavors across
+                      different shops.
+                    </p>
+                    <div className="card-actions justify-end">
+                      <div className="badge badge-outline">React</div>
+                      <div className="badge badge-outline">MongoDB</div>
+                    </div>
                   </div>
                 </div>
-              </div>
               </Link>
               <Link href={`/${newestPost.slug}`}>
                 <div className="card w-96 bg-base-200 shadow-xl relative top-32 -left-48 z-10 transition hover:translate-x-2 hover:-translate-y-2">
