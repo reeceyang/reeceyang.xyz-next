@@ -1,9 +1,14 @@
 import BlogCard from '@/components/BlogCard';
+import ProjectCard from '@/components/ProjectCard';
 import { getSortedPostsData } from '@/utils/posts';
 import { faEnvelope, faFile } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image'
 import Link from 'next/link';
+import { PROJECTS } from './projects';
+
+const HOME_SLUGS = ["bobaboss", "beaverlens"];
+const HOME_PROJECTS = PROJECTS.filter(({slug}) => HOME_SLUGS.includes(slug));
 
 export default async function Home() {
   const allPostsData = await getSortedPostsData().slice(0, 3);
@@ -29,6 +34,7 @@ export default async function Home() {
                         My interests include full-stack web development,
                         human–computer interaction, writing, and music.
                       </li>
+                      <li>Let&rsquo;s work together!</li>
                     </ul>
                   </div>
                   <div className="flex flex-row gap-6 w-fit m-auto">
@@ -90,63 +96,14 @@ export default async function Home() {
       </div>
       <div className="container max-w-5xl m-auto py-12">
         <h1 className="text-5xl font-bold">Projects</h1>
-
         <div className="flex flex-col py-6 gap-6">
-          <div className="card shadow-xl bg-base-200">
-            <div className="flex flex-row gap-3">
-              <div className="mockup-browser bg-base-200 shadow-xl glass">
-                <div className="mockup-browser-toolbar">
-                  <div className="input">https://bobaboss.reeceyang.xyz</div>
-                </div>
-                <Image
-                  width="1600"
-                  height="900"
-                  src={"/bobaboss_home.png"}
-                  alt={"bobaboss home"}
-                />
-              </div>
-              <div className="card-body">
-                <h2 className="card-title">BobaBoss</h2>
-                <p>
-                  Find the best boba in Boston! Review aggregation web app that
-                  lets you explore individual boba flavors across different
-                  shops.
-                </p>
-                <div className="card-actions justify-end">
-                  <div className="badge badge-outline">React</div>
-                  <div className="badge badge-outline">MongoDB</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-row gap-3">
-            <div className="card shadow-xl bg-base-200">
-              <div className="card-body">
-                <h2 className="card-title">Beaver Lens</h2>
-                <p>
-                  Browse an archive of over 5,000 MIT Confessions, or add an
-                  Discord bot to automatically forward new confessions to a
-                  Discord server.
-                </p>
-                <div className="card-actions justify-end">
-                  <div className="badge badge-outline">Next.js</div>
-                  <div className="badge badge-outline">MongoDB</div>
-                </div>
-              </div>
-            </div>
-            <div className="mockup-browser bg-base-200 shadow-xl glass">
-              <div className="mockup-browser-toolbar">
-                <div className="input">https://beaverlens.reeceyang.xyz</div>
-              </div>
-              <Image
-                width="1600"
-                height="900"
-                src={"/beaverlens_home.png"}
-                alt={"beaverlens home"}
-              />
-            </div>
-          </div>
+          {HOME_PROJECTS.map((project, i) => (
+            <ProjectCard project={project} key={project.slug} flip={i % 2 == 1}/>
+          ))}
         </div>
+        <Link href="/projects">
+          <button className="btn btn-primary m-auto block">View All Projects</button>
+        </Link>
       </div>
       <div className="container max-w-5xl m-auto py-12">
         <h1 className="text-5xl font-bold">Blog</h1>
@@ -156,7 +113,7 @@ export default async function Home() {
           ))}
         </div>
         <Link href="/blog">
-          <button className="btn btn-primary m-auto block">View More</button>
+          <button className="btn btn-secondary m-auto block">View All Posts</button>
         </Link>
       </div>
       <div className="container max-w-5xl m-auto py-12">

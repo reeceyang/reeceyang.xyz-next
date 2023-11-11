@@ -5,3 +5,13 @@ interface BlogPost {
   excerpt: string,
   categories: string[],
 }
+
+interface Project {
+  title: string,
+  description: string,
+  url?: string,
+  image_src?: string,
+  categories: string[],
+  slug: string,
+  github_url?: string,
+}
