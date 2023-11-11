@@ -18,11 +18,11 @@ export default async function Home() {
     <main>
       <div className="bg-pattern">
         <div className="hero min-h-[80vh] bg-[#ffffffcc]">
-          <div className="hero-content flex-col lg:flex-row">
+          <div className="hero-content flex-col lg:flex-row p-0 sm:p-4 max-w-[100vw]">
             <div className="card bg-base-100 shadow-xl">
-              <div className="card-body md:p-12 flex flex-row flex-wrap md:gap-2 md:flex-nowrap">
+              <div className="card-body p-4 md:p-12 flex flex-row flex-wrap md:gap-2 md:flex-nowrap">
                 <div>
-                  <h1 className="text-5xl font-bold">Hi, I’m Reece!</h1>
+                  <h1 className="sm:text-5xl font-bold">Hi, I’m Reece!</h1>
                   <div className="prose md:p-6">
                     <ul className="sm:text-xl">
                       <li>
@@ -103,7 +103,7 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <div className="container max-w-5xl m-auto py-12">
+      <div className="container max-w-5xl m-auto py-12 px-4">
         <h1 className="text-5xl font-bold">Projects</h1>
         <div className="flex flex-col py-6 gap-6">
           {HOME_PROJECTS.map((project, i) => (
@@ -120,7 +120,7 @@ export default async function Home() {
           </button>
         </Link>
       </div>
-      <div className="container max-w-5xl m-auto py-12">
+      <div className="container max-w-5xl m-auto py-12 px-4">
         <h1 className="text-5xl font-bold">Blog</h1>
         <div className="flex flex-col py-6 gap-6">
           {allPostsData.map((blogPost) => (
@@ -133,7 +133,7 @@ export default async function Home() {
           </button>
         </Link>
       </div>
-      <div className="container max-w-5xl m-auto py-12">
+      <div className="container max-w-5xl m-auto py-12 px-4">
         <h1 className="text-5xl font-bold">Fun Things</h1>
         <div className="flex flex-row py-6 gap-6 flex-wrap">
           <div className="card w-96 h-96 shadow-xl bg-base-200 mask mask-square">
