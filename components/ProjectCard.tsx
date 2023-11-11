@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image'
 import Link from 'next/link';
 
@@ -42,7 +43,7 @@ const sidebar = (
 
   return (
     <Link href={`/projects/${project.slug}`}>
-      <div className="card shadow-xl bg-base-200">
+      <div className="card shadow-xl bg-base-200 transition hover:translate-x-2 hover:-translate-y-2">
         <div className="flex flex-row gap-3 flex-wrap md:flex-nowrap">
           {flip && sidebar}
           <ProjectMockup project={project} />

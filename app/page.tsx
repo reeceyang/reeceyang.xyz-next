@@ -12,6 +12,7 @@ const HOME_PROJECTS = PROJECTS.filter(({slug}) => HOME_SLUGS.includes(slug));
 
 export default async function Home() {
   const allPostsData = await getSortedPostsData().slice(0, 3);
+  const newestPost = allPostsData[0];
 
   return (
     <main>
@@ -61,7 +62,8 @@ export default async function Home() {
               </div>
             </div>
             <div className="">
-              <div className="card w-96 bg-base-200 shadow-xl relative -top-32 z-10 -left-24">
+              <Link href={`/bobaboss`}>
+              <div className="card w-96 bg-base-200 shadow-xl relative -top-32 z-10 -left-24 transition hover:translate-x-2 hover:-translate-y-2">
                 <div className="card-body">
                   <h2 className="card-title">
                     BobaBoss
@@ -78,18 +80,18 @@ export default async function Home() {
                   </div>
                 </div>
               </div>
-
-              <div className="card w-96 bg-base-200 shadow-xl relative top-32 -left-48 z-10">
-                <div className="card-body">
-                  <h2 className="card-title">
-                    Battlecode 2023 Postmortem
-                    <div className="badge badge-secondary">Blog</div>
-                  </h2>
-                  <p>
-                    I recently participated in the MIT Battlecode competition.
-                  </p>
+              </Link>
+              <Link href={`/${newestPost.slug}`}>
+                <div className="card w-96 bg-base-200 shadow-xl relative top-32 -left-48 z-10 transition hover:translate-x-2 hover:-translate-y-2">
+                  <div className="card-body">
+                    <h2 className="card-title">
+                      {newestPost.title}
+                      <div className="badge badge-secondary">Blog</div>
+                    </h2>
+                    <p className="line-clamp-2">{newestPost.excerpt}</p>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         </div>
@@ -98,11 +100,17 @@ export default async function Home() {
         <h1 className="text-5xl font-bold">Projects</h1>
         <div className="flex flex-col py-6 gap-6">
           {HOME_PROJECTS.map((project, i) => (
-            <ProjectCard project={project} key={project.slug} flip={i % 2 == 1}/>
+            <ProjectCard
+              project={project}
+              key={project.slug}
+              flip={i % 2 == 1}
+            />
           ))}
         </div>
         <Link href="/projects">
-          <button className="btn btn-primary m-auto block">View All Projects</button>
+          <button className="btn btn-primary m-auto block">
+            View All Projects
+          </button>
         </Link>
       </div>
       <div className="container max-w-5xl m-auto py-12">
@@ -113,7 +121,9 @@ export default async function Home() {
           ))}
         </div>
         <Link href="/blog">
-          <button className="btn btn-secondary m-auto block">View All Posts</button>
+          <button className="btn btn-secondary m-auto block">
+            View All Posts
+          </button>
         </Link>
       </div>
       <div className="container max-w-5xl m-auto py-12">
