@@ -1,0 +1,36 @@
+---
+title: "Hotchkiss Life Hacks"
+date: 2021-04-11
+excerpt: Some life hacks that helped improve my experience at Hotchkiss.
+categories: []
+---
+
+Some life hacks that helped improve my experience at Hotchkiss.
+
+Use LaundryView weekly statistics to find times when the laundry machines are least busy.
+-----------------------------------------------------------------------------------------
+
+If you go to the right sidebar of the LaundryView website, there’s an option to view the weekly statistics for each laundry room. You can use this chart to see when the machines are least likely to be used and plan your laundry schedule accordingly. For example, my dorm’s laundry room is most busy on the weekends, and is unusually busy at 11 p.m. on Monday.
+
+Use weather.hotchkiss.org for the most accurate current weather.
+----------------------------------------------------------------
+
+There’s a weather station on top of the science building (at least that’s where I think it is) that measures temperature, wind speed, humidity, and bunch of other values! The information is displayed at [http://weather.hotchkiss.org/](http://weather.hotchkiss.org/) and updated every five minutes. There’s also a lot of other interesting information, like sunrise and sunset times and the current moon phase, and historical trends and statistics.
+
+Add your classes to Google Calendar.
+------------------------------------
+
+This is so convenient. You can get notifications on your phone for when you have class, you can add in Zoom links to the events to join class meetings easily, you can see if appointments conflict with your classes, and you can share your calendar with other people to schedule meetings or other events. Adding your classes takes at most 30 minutes at the start of each semester, and it’s so worth it.
+
+Turn on airplane mode while on campus to save battery.
+------------------------------------------------------
+
+At least on iPhone, searching for signal drains battery quickly. Since cell reception is poor all around campus and you’re unlikely to need to use cellular data most of the time, turning on airplane mode can help save your phone’s battery life.
+
+_Last updated May 8, 2021._
+
+import MdxLayout from "@/components/MdxLayout";
+
+export default ({children }) => {
+  return <MdxLayout meta={{title: frontmatter.title, date: frontmatter.date, categories: frontmatter.categories}}>{children}</MdxLayout>;
+}

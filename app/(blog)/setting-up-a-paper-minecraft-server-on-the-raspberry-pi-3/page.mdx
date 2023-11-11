@@ -1,0 +1,99 @@
+---
+title: Setting up a Paper Minecraft Server on the Raspberry Pi 3
+slug: Setting up a Paper Minecraft Server on the Raspberry Pi 3
+date: 2021-02-08
+excerpt: I recently created a survival multiplayer Minecraft server to play on with my friends. I used a Raspberry Pi 3 Model B and the PaperMC server. Here is how I set it up.
+categories: []
+---
+I recently created a survival multiplayer Minecraft server to play on with my friends. I used a Raspberry Pi 3 Model B and the PaperMC server. Here is how I set it up:
+
+Setting up the Raspberry Pi
+===========================
+
+I mainly followed the instructions in [this tutorial](https://raspberrytips.com/minecraft-server-raspberry-pi/), with a few differences.
+
+I used SSH to connect to my Raspberry Pi. I also configured it to be headless (so the GUI Desktop is disabled). You can access the configuration menu with: `sudo raspi-config`
+
+Setting up Paper
+================
+
+Unlike the tutorial linked above, we’re using Paper. The Paper JARs are pre-compiled, so there’s no need to compile it on the Raspberry Pi. You can [get the link for the latest build on the downloads page](https://papermc.io/downloads). We can skip directly to making a folder for the Minecraft server and downloading the file into that folder:
+
+```shell
+mkdir /home/pi/minecraft
+mkdir /home/pi/minecraft/server
+cd /home/pi/minecraft/server
+wget https://papermc.io/api/v2/projects/paper/versions/1.16.5/builds/466/downloads/paper-1.16.5-466.jar
+```
+
+Next, I ran the JAR for the first time. The first time I tried it, it crashed. So, I had to specify the amount of RAM to allocate, and then it worked:
+
+```shell
+java -Xmx100M -Xms500M -jar paper-1.16.5-466.jar
+```
+
+Everything else was the same as the tutorial.
+
+Optimizations
+=============
+
+My Raspberry Pi model only has 1GB of RAM, so the server was very slow at first. I made a few optimizations. First, I used [Aikar’s optimization flags](https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/) for the JVM and changed the max memory value to 750 MB.
+
+```shell
+java -Xms100M -Xmx750M -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar paper-1.16.5-466.jar nogui
+```
+
+Next, I edited the paper.yml, bukkit.yml, and spigot.yml configuration files according to [this guide](https://apexminecrafthosting.com/server-optimization/).
+
+After these optimizations, the server runs at around 15 to 20 TPS, which is good enough for me.
+
+Port Forwarding and Custom Domain Name
+======================================
+
+I forwarded a port so people outside of my LAN could join the server (I followed [this guide](https://www.wikihow.com/Portforward-Minecraft)). For fun, I also set up a custom domain name. To do that, I followed [these instructions on NameCheap](https://www.namecheap.com/support/knowledgebase/article.aspx/9765/2208/how-can-i-link-my-domain-name-to-a-minecraft-server/). I’m actually using Cloudflare for my DNS servers, so I added the A and SRV records in my Cloudflare dashboard instead and it worked!
+
+You can use [mcsrvstat.us](https://mcsrvstat.us/) to check if your IP or domain is working.
+
+Datapacks
+=========
+
+To spice things up and make some quality of life improvements to the survival experience, I added a few datapacks from [Vanilla Tweaks](https://vanillatweaks.net/). After downloading the datapacks to my Mac, I used scp to move them over to the Raspberry Pi:
+
+```shell
+scp VanillaTweaks\_c709570.zip pi@192.168.1.22:/home/pi/minecraft/world/datapacks
+```
+
+The Vanilla Tweaks datapacks need to be unzipped first. I did that with [the unzip utility (you may need to install it first)](https://linuxconfig.org/how-to-unzip-a-zip-file-from-command-line-and-gui):
+
+```shell
+unzip VanillaTweaks\_d977310\_UNZIP\_ME.zip -d /home/pi/minecraft/world/datapacks
+```
+
+Java/Bedrock Crossplay
+======================
+
+Some of my friends only own the Bedrock Edition of Minecraft, so I set up the [Geyser](https://geysermc.org/) proxy to allow them to join the server as well. This was fairly straightforward—I just [followed the setup instructions](https://github.com/GeyserMC/Geyser/wiki/Setup) and everything worked fine.
+
+Unfortunately, I couldn’t get a custom domain name to work for the Geyser Proxy. I tried setting up different A and SRV records on Cloudflare for the Bedrock Edition’s different port (it uses port 19132, unlike Java Edition, which uses 25565), but it didn’t work. If anyone has any other ideas, feel free to comment them down below!
+
+You can check your Geyser server status with [bedrockinfo.com](https://bedrockinfo.com/) or [mcsrvstat.us](https://mcsrvstat.us).
+
+Backing Up Server Files with Git
+================================
+
+I also wanted to back up my server files on GitHub. The process is the basically the same as for any other repository, so I won’t delve into it here. You can [check out this page for resources for learning Git](https://try.github.io/).
+
+I also tried to get [git-lfs](https://git-lfs.github.com/) to work, but whenever I tried to run `git lfs install`, git couldn’t find the command “`lfs`.” I’m not sure why it’s not working on Raspberry Pi, but if you have any ideas, let me know below!
+
+Closing Thoughts
+================
+
+Depending on what model you have, your Raspberry Pi might not have a lot of disk space. If you don’t want your world files to get too big, you can enable a world border to prevent players from generating too many new chunks.
+
+Hopefully this was helpful! Comment down below if you have any questions or suggestions, and I’ll try to get back to you as soon as possible. Enjoy your new Minecraft server!
+
+import MdxLayout from "@/components/MdxLayout";
+
+export default ({children }) => {
+  return <MdxLayout meta={{title: frontmatter.title, date: frontmatter.date, categories: frontmatter.categories}}>{children}</MdxLayout>;
+}

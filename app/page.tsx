@@ -1,8 +1,13 @@
+import BlogCard from '@/components/BlogCard';
+import { getSortedPostsData } from '@/utils/posts';
 import { faEnvelope, faFile } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image'
+import Link from 'next/link';
 
-export default function Home() {
+export default async function Home() {
+  const allPostsData = await getSortedPostsData().slice(0, 3);
+
   return (
     <main>
       <div className="bg-pattern">
@@ -146,52 +151,13 @@ export default function Home() {
       <div className="container max-w-5xl m-auto py-12">
         <h1 className="text-5xl font-bold">Blog</h1>
         <div className="flex flex-col py-6 gap-6">
-          <div className="card shadow-xl bg-base-200">
-            <div className="card-body">
-              <h2 className="card-title">Battlecode 2023 Postmortem</h2>
-              <p>
-                I recently participated in the MIT Battlecode competition.
-                Battlecode is a programming competition where competitors
-                program virtual robots to battle each other. This was my team’s
-                first time competing; we were able to place 2nd in the ...
-              </p>
-              <div className="card-actions justify-end">
-                <div className="badge badge-outline">React</div>
-                <div className="badge badge-outline">MongoDB</div>
-              </div>
-            </div>
-          </div>
-          <div className="card shadow-xl bg-base-200">
-            <div className="card-body">
-              <h2 className="card-title">Battlecode 2023 Postmortem</h2>
-              <p>
-                I recently participated in the MIT Battlecode competition.
-                Battlecode is a programming competition where competitors
-                program virtual robots to battle each other. This was my team’s
-                first time competing; we were able to place 2nd in the ...
-              </p>
-              <div className="card-actions justify-end">
-                <div className="badge badge-outline">React</div>
-                <div className="badge badge-outline">MongoDB</div>
-              </div>
-            </div>
-          </div>
-          <div className="card shadow-xl bg-base-200">
-            <div className="card-body">
-              <h2 className="card-title">Battlecode 2023 Postmortem</h2>
-              <p>
-                I recently participated in the MIT Battlecode competition.
-                Battlecode is a programming competition where competitors
-                program virtual robots to battle each other. This was my team’s
-                first time competing; we were able to place 2nd in the ...
-              </p>
-              <div className="card-actions justify-end">
-                <div className="badge badge-outline">React</div>
-                <div className="badge badge-outline">MongoDB</div>
-              </div>
-            </div>
-          </div>
+          {allPostsData.map((blogPost) => (
+            <BlogCard blogPost={blogPost} key={blogPost.slug} />
+          ))}
         </div>
+        <Link href="/blog">
+          <button className="btn btn-primary m-auto block">View More</button>
+        </Link>
       </div>
       <div className="container max-w-5xl m-auto py-12">
         <h1 className="text-5xl font-bold">Fun Things</h1>

@@ -1,0 +1,90 @@
+---
+title: Making a Rhythm Game With LÖVE
+slug: making-a-rhythm-game-with-love
+categories: ["Lua"]
+date: 2022-07-23
+excerpt: "Recently I’ve been learning how to use LÖVE, a 2d game framework, to make a rhythm game that I’m calling osu!vim. osu!vim is an idea I’ve had for a while now. As you might guess, it was inspired by two things: osu!, a rhythm game where you click circles to the beat of the music, and vim, a terminal text editor program."
+---
+
+Recently I’ve been learning how to use LÖVE, a 2d game framework, to make a rhythm game that I’m calling _osu!vim._
+
+osu!vim is an idea I’ve had for a while now. As you might guess, it was inspired by two things: [osu!](https://osu.ppy.sh/home), a rhythm game where you click circles to the beat of the music,
+<iframe class="youtube-player" width="560" height="315" src="https://www.youtube.com/embed/UYNpkDrCWtA?version=3&#038;rel=1&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;fs=1&#038;hl=en-US&#038;autohide=2&#038;wmode=transparent" allowfullscreen="true" sandbox="allow-scripts allow-same-origin allow-popups allow-presentation"></iframe>
+and [vim](https://www.vim.org/), a terminal text editor program.
+
+Unlike other text editing programs like Microsoft Word or even other programming IDEs, vim encourages you to use only the keyboard for every possible command. For example, instead of using the mouse to move the cursor, you can press the j key to move the cursor down, k to move up, h to move left and l to move right.
+
+When you want to start typing text into your file, you press the i key to bring vim into insert mode, which lets you insert text like a regular text editor. Pressing the esc key brings vim back to normal mode, where you can execute commands like before.
+
+Pretty much every key has a different command mapped to it, which lets you form sequences to do cool things. For example, `yyp` will copy the current line and paste it below, `0v$~` will flip the case of every character in the current line, and `3i osu! [esc][esc]` will type osu! three times.
+
+I started learning vim while taking [6.009 (now known as 6.101)](https://py.mit.edu/) to code more efficiently. Since your hands almost never have to leave the home row, you can keep typing uninterrupted and also avoid injuries from repetitive motions. I’m definitely not a vim expert yet, but after getting past the learning curve using vim feels natural—enough so that I get sad when I use Google Docs and have to type the old-fashioned way.
+
+In osu!, the circles pop up in different locations on the screen to form various patterns. Players use mice or tablets to move the cursor to the circles and click them. What if there was a rhythm game where you used vim keybindings to move the cursor to different locations on the screen? Voila—the osu!vim idea was born.
+
+I started working on a prototype this week during some spare time. I was curious about LÖVE (which uses the Lua scripting language), so I decided to try it out.
+
+At first glance, Lua’s syntax looks like a modern version of BASIC (tangent: BASIC holds a special place in my heart since I started seriously learning how to program with it).
+
+```lua
+if key == "h" and cursor.x > 0 then
+    cursor.x = cursor.x - 1
+end
+```
+
+While other languages might use curly braces and parentheses to denote an if-statement block, Lua uses the `if...then...end` structure.
+
+At the same time, Lua also has many more powerful features that were missing from my BASIC experience, such as a hash table data structure. Interestingly, instead of having lists or arrays, Lua uses tables that map indices (1, 2, 3, etc.) to values.
+
+```lua
+cursor = {x = 0, y = 0}
+cursor.x = 1
+cursor\["y"\] = 2
+
+myList = {"a", "b", "c"} --this "list" is actually just a table
+print(myList\[1\]) --a --oh yeah, lua is 1-indexed btw
+```
+
+Some additional features I found quirky:
+
+*   You call an object’s function using a colon: `hitSound:play()` (this is shorthand for passing the object into the function as an argument).
+*   You concatenate strings with two periods:
+
+```lua
+print("hello ".."world!") --hello world!
+```
+
+*   For some reason, there’s no built-in function for splitting strings (i.e. turning `"a,2,hi"` into a list `{"a", "2", "hi"}`)! I had to find a solution on StackOverflow
+
+I followed an [online tutorial](https://sheepolution.com/learn/book/contents) to get started with LÖVE. LÖVE games have three different parts:
+
+1.  a `love.load()` function where you initialize variables, load in resources, and set up the game’s starting state.  
+ For osu!vim, I needed to set up the player’s cursor’s starting location, load in audio files, and prepare the “beatmap”—the timings in the song that the player must hit. Mapping songs isn’t easy and is an art form on its own. I wanted a way to play osu! beatmaps in osu!vim, so I created a procedure to extract timings from an osu! beatmap file and use it in osu!vim.
+
+2.  a `love.draw()` function that continually updates the graphics on the screen.  
+ I decided to keep things simple for the first iteration of osu!vim. The cursor is a white filled-in square, and the targets are a white-outlined square. If you hit the target on time, a blue square gets drawn on top of the cursor; if not, it’s a red square.  
+ The game field consists of a grid of `#` characters (to mimic a text file), and the game prints the percentage of targets hit in the corner.
+
+3.  a `love.update()` function that is continually run to update the game state.  
+ For osu!vim, in each update the game checks the beatmap to decide whether its time to show the next target. If so, the game checks to see whether the player hit the current target, and then chooses a random location for the next target. Right now, the next target is always in an adjacent square, but I’m hoping to add in more complicated patterns later on.
+
+osu!vim also has a `love.keypressed()` function to move the cursor whenever the player presses `h`, `j`, `k` or `l`.
+
+Here’s a demo of my current progress!
+<iframe loading="lazy" class="youtube-player" width="560" height="315" src="https://www.youtube.com/embed/-KM_b_93YtQ?version=3&#038;rel=1&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;fs=1&#038;hl=en-US&#038;autohide=2&#038;wmode=transparent" allowfullscreen="true" sandbox="allow-scripts allow-same-origin allow-popups allow-presentation"></iframe>
+
+There is a lot of room for improvement, but I’m happy that this concept now exists out in the world! Here are some of my plans going forward:
+
+*   I want to work on a better system for telling the player when to move, because currently you kind of have to guess what the rhythm is (you can see me struggling in the video). osu! has “approach circles” that close in on the circle right as you’re supposed to hit it, so I might make something similar for osu!vim.
+*   I’m considering porting the game to the web. Experimenting with LÖVE has been fun, but a web app version of the game would be more accessible to people wanting to try it. I’m also much more comfortable with JavaScript, so development will also be faster.
+*   osu! has a system for creating custom rulesets. This means I could create a ruleset that allows people to play osu!vim using the osu! client. I want to do this eventually, but developing in C# (the language osu! is written in) is very new to me.
+
+If you’re interested in LÖVE, [the tutorial I followed](https://sheepolution.com/learn/book/contents) was very helpful (and is beginner-friendly as well, if you don’t have prior programming experience). You can also check out the [LÖVE website](https://love2d.org/).
+
+The [source code for osu!vim is available on GitHub.](https://github.com/reeceyang/osu-vim-love)
+
+import MdxLayout from "@/components/MdxLayout";
+
+export default ({children }) => {
+  return <MdxLayout meta={{title: frontmatter.title, date: frontmatter.date, categories: frontmatter.categories}}>{children}</MdxLayout>;
+}

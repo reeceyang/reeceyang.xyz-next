@@ -1,7 +1,9 @@
-export const meta = {
-  title: "Battlecode 2023 Postmortem",
-  date: "2023-02-19",
-}
+---
+title: "Battlecode 2023 Postmortem"
+date: 2023-02-19
+excerpt: I recently participated in the MIT Battlecode competition. Battlecode is a programming competition where competitors program virtual robots to battle each other. This was my team's first time competing; we were able to place 2nd in the MIT Newbie tournament! A recap of our strategy is included below. 
+categories: ["Java", "Optimization"]
+---
 
 I recently participated in the MIT Battlecode competition. Battlecode is a programming competition where competitors program virtual robots to battle each other. This was my team's first time competing; we were able to place 2nd in the MIT Newbie tournament! A recap of our strategy is included below. The source code for our robot is also [available on GitHub](https://github.com/reeceyang/battlecode-2023).
 
@@ -71,3 +73,9 @@ Jade Chongsathapornpong / cjade@mit.edu / [certaingemstone.github.io](http://cer
 Kai van Brunt / kav@mit.edu / [tidalove.github.io](https://tidalove.github.io/)
 
 Reece Yang / rya@mit.edu / [reeceyang.xyz](http://reeceyang.xyz)
+
+import MdxLayout from "@/components/MdxLayout";
+
+export default ({children }) => {
+  return <MdxLayout meta={{title: frontmatter.title, date: frontmatter.date, categories: frontmatter.categories}}>{children}</MdxLayout>;
+}

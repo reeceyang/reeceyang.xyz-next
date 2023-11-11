@@ -1,0 +1,238 @@
+---
+title: My CMIMC 2021 Experience and Optimization Round Editorial
+date: 2021-02-13
+excerpt: I started a competitive programming club at my high school this year, and we recently competed in the Carnegie Mellon Informatics and Mathematics Competition (CMIMC) 2021 Programming Contest. Here is my (unofficial) editorial for the Optimization Round)!
+categories: ["Python", "C++", "Optimization"]
+---
+I started a competitive programming club at my high school this year, and we recently competed in the [Carnegie Mellon Informatics and Mathematics Competition (CMIMC)](https://cmimconline.org/) 2021 Programming Contest. All of the code for our solutions can be found in [this GitHub repository](https://github.com/HotchkissCP/cmimc2021) (warning: it’s kind of messy oops). Here is my (unofficial) editorial for the [Optimization Round](https://cmimconline.org/programming/format)!
+
+Unique Products
+===============
+
+Given natural numbers _N_ and _M_, you must construct sets
+
+```A_1, A_2, A_3, dots, A_N subseteq {1, 2, 3, dots, M}```
+
+such that all possible products _a1a2a3…aN_ are distinct, where _ai_ is in _Ai_ for all _i_.
+
+The sets _A_1_, _A_2_, …, _A\_N_ must have equal size, and do not need to be distinct.
+
+* * *
+
+The basic approach to solving this problem was constructing _N_ subsets where each number in a subset was coprime to all the numbers in the other subsets. My solution first generated a list of prime numbers less than _M_. Then, it distributed those primes among the _N_ subsets. After that, it went through all the composite numbers and tried to place them in one of the subsets. We can place a number _i_ in a subset if all of its prime factors are in that subset:
+
+```python
+for i in not_primes:
+  factors = f(i)
+  unique = True
+  located = []
+  first = factors[0]
+  for j in range(len(subsets)):
+    if first in subsets[j]:
+      located = j
+  for k in range(1,len(factors)):
+    if not factors[k] in subsets[located]:
+      unique = False
+      break
+  if unique:
+    subsets[located].append(i)
+```
+
+With this method, improving our answer came down to finding the optimal way to initially distribute the prime numbers. I tried a number of different ways of doing this, but the most effective way was something like this (for Task 1):
+
+```
+1 2 53 59 61 67 71 73 79 83 89 97 101 103 107 109 113 127 131 137 139 149 151 157 163 167 173 179 181 191 193 197 199...
+1 3 5 7 11 13 17 19 23 29 31 37 41 43 47...
+```
+
+We first put 2 in a subset by itself. Then we put 3, 5, and all the other primes up to 47 in the other set. Then we put the remaining primes in the first subset. This arrangement for Task 1 received 112 points.
+
+Getting the specific prime number to stop at took some tweaking. Here are the optimal solutions I found for the other tasks:
+
+```python
+if task == "2":
+  start = 38
+  subsets.append([1,2] + primes[start:])
+  subsets.append([1] + primes[1:start])
+if task == "3":
+  start = 83
+  subsets.append([1,2] + primes[start:])
+  subsets.append([1] + primes[1:start])
+if task == "4":
+  pre = 3
+  start = 211
+  pre_start = 26
+  subsets.append([1,2] + primes[start:])
+  subsets.append([1,3] + primes[pre_start:start])
+  subsets.append([1,5] + primes[pre:pre_start])
+if task == "5":
+  pre = 4
+  pre_start = 15
+  pre_start2 = 53
+  start = 105
+  subsets.append([1,2] + primes[start:])
+  subsets.append([1,3] + primes[pre_start2:start])
+  subsets.append([1,5] + primes[pre_start:pre_start2])
+  subsets.append([1,7] + primes[pre:pre_start])
+```
+
+I arranged the primes manually for Task 6 to get a score of 9:
+
+```
+1 2 4 8 16 32 64 128 199
+1 3 9 27 31 81 93 41 123
+1 5 25 29 125 145 157 37 185
+1 7 23 49 161 139 137 113 109
+1 11 17 121 187 103 101 97 79
+1 13 19 169 73 71 67 61 59
+1 47 83 127 167 179 193 43 149
+1 53 89 131 173 181 191 151 197
+```
+
+We ended up in 9th place for Unique Products, so this solution wasn’t the best, but it still worked pretty well. From hearing other teams’ discussions after the competition, we could have used powers of larger primes as “primes,” which would have helped increase our score. More details about this are available in the competition Slack server.
+
+**Side note:** the subsets can contain at most one element in common. Why? Let’s say we have two different numbers _a_ and _b_ that are both in two different subsets. Then we can form the product _ab_ in two ways: taking _a_ from the first subset and _b_ from the second, and taking _b_ from the first subset and _a_ from the second subset. Thus, this arrangement would be invalid.
+
+We can, however, include one common element. We can add 1 to each subset without creating any conflicts, so that’s what I did.
+
+Circle Covers
+=============
+
+Aliens, aka CMIMC Programming Organizers, are trying to abduct the contestants of CMIMC Programming! As you are all socially distancing, from the point of view of the aliens, you are just points in a plane. To abduct the contestants, the aliens will drop crop circles of varying radii on groups of you.
+
+Given _N_ points on a 2D plane, and _M_ lengths denoting the radii of circles, your goal is to place these _M_ circles on the plane in a way that maximizes the number of points covered by some circle.
+
+* * *
+
+We went with a brute force solution for this problem! This was the procedure:
+
+1.  Iterate through each radius, starting from the largest and going in descending order.
+    1.  For each radius, test every lattice point on the coordinate plane. If the circle intersects with another circle, skip this point.
+    2.  See how many points the circle covers.
+    3.  Place the circle at the point where it covers the greatest number of points (the densest location, basically).
+
+This was a super slow solution. Luckily, a few optimizations helped allow it run in a reasonable amount of time. I also implemented the solution in C++ for an additional speed boost.
+
+*   We only check the region of the coordinate plane where there are points; i.e. we check the box formed by the minimum _x,y_-coordinates and maximum _x,y_-coordinates of the points in the list.
+*   Instead of looping through every point to see if it falls under the circle, we create an array where each index represents a point on the coordinate plane. In each index, we store the number of points at that coordinate point. Then, we can just check the points inside the square circumscribing the circle:
+
+```C++
+REP(px, max(0, x - r), min(x + r, 2000 - 1)) {
+  REP(py, max(0, y - r), min(y + r, 2000 - 1)) {
+    if (in_circle(r, px, py, x, y)) {
+      points_in_circle += grid[px][py];
+    }
+  }
+}
+```
+
+*   If a circle covers 0 points, then we can remove that point from consideration for smaller circles because they definitely won’t cover any points there as well.
+
+We also tried iterating through decimal increments of the coordinate plane for increased accuracy. This worked for Task 1 and 2, but due to the nature of the optimizations I made for my C++ program we weren’t able to try it for the later tasks.
+
+This solution got us 98.21 points and 6th place in the event. It also took under one hour to run for all of the tasks, which is pretty cool.
+
+Robot Recovery
+==============
+
+As another side project besides CMIMC, Carnegie the Mellon was able to build a robot army of _N_ robots, for his plan of world domination. Unfortunately on his way to CMIMC he lost them in a rectangular maze of _R_ by _C_ cells. The maze consists of cells that are either walls or empty rooms, and has one entrance. The robots quickly spread themselves out, occupying _N_ distinct rooms.
+
+Carnegie the Mellon is afraid of mazes and waits anxiously at the entrance, hoping for his robot’s safety. Luckily, Carnegie the Mellon has built a remote to control his robot army, but it only has 4 buttons, `U`, `D`, `L`, `R`. These buttons command all _N_ robots to move one cell up, down, left, or right, respectively. The robots have advanced pathing, so if the direction would cause a robot to hit a wall, it chooses to stay in place. Two or more robots may occupy the same cell simultaneously.
+
+Carnegie the Mellon would like to move all _N_ robots to the maze’s entrance, so he can regroup with them. Once a robot reaches the entrance, Carnegie the Mellon can deactivate it, so it no longer listens to the remote’s command. Find the shortest sequence of commands so that all _N_ robots reach the entrance of the maze.
+
+* * *
+
+This was my favorite problem on the contest! I tried so many different approaches and getting better and better answers was always super satisfying. (You can see [in the repository](https://github.com/HotchkissCP/cmimc2021/tree/main/cmimcoptimization3) how many different programs I wrote lol.)
+
+First, an optimization that helped greatly increase my solution’s efficiency: I did a breadth-first search from the entrance to every point in the maze, then stored the path to every point in an array:
+
+```python
+dirs = {"U":[-1,0],"D":[1,0],"L":[0,-1],"R":[0,1]}
+
+q = []
+visited = [[False for i in range(c)] for j in range(r)]
+shortestpath = [["" for i in range(c)] for j in range(r)]
+x = entrance[0]
+
+visited[x[0]][x[1]] = True
+shortestpath[x[0]][x[1]] = ""
+reached = 0
+walls = 0
+q.append(x)
+while len(q) != 0:
+  s = q[0]
+  q.pop(0)
+  # process node s
+  for key in dirs:
+    d = dirs[key]
+    new = [s[0] + d[0],s[1] + d[1]]
+    if new[0] < 0 or new[1] < 0 or new[0]>=r or new[1]>=c:
+      # out of bounds
+      continue
+    if visited[new[0]][new[1]]: 
+      continue
+    visited[new[0]][new[1]] = True
+		# is it a wall?
+    if maze[new[0]][new[1]] == "X":
+      continue
+    shortestpath[new[0]][new[1]] = shortestpath[s[0]][s[1]] + key
+    q.append(new)
+```
+
+The path from a point (_i, j_) to the entrance is then just `shortestpath[i][j]` reversed:
+
+```python
+rev = {"U":"D","D":"U","L":"R","R":"L"}
+def reverse(s):
+  new_s = ""
+  for char in s:
+    new_s = rev[char] + new_s
+  return new_s
+```
+
+Here are a couple of the solutions I tried initially:
+
+*   Move the farthest (or the closest) robot away from the entrance to the entrance. Repeat until all the robots are at the entrance.
+*   Loop through possible path options, and score each possible board configuration produced. Choose the most optimal configuration. Here is one scoring function I tried:
+
+```python
+def get_score(rob_locations):
+  score = 0
+  for i in range(len(rob_locations)):
+    rob = rob_locations[i]
+    dist = len(shortestpath[rob[0]][rob[1]])
+    if dist == 0:
+      return "INF"
+    score += 1/dist
+```
+
+In terms of path options, I tried checking all possible paths of a certain length; different substrings of the path from the farthest robot to the entrance; and a few other things I can’t recall at the moment.
+
+I ended up not pursuing the scoring-maze-configurations approach further. Instead, I used the idea that if two robots are on the same square, I could move them to entrance simultaneously. Using BFS, I moved the farthest robot away from the entrance closer to its closest neighbor. My algorithm repeated this until all the robots were in the same square, then moved them all to the entrance at the same time.
+
+Occasionally, the robots would get stuck in a loop. For example, the sequence “UU” and “DD” would repeat over and over again without any change. To prevent this, I added a (kind of cursed) line to detect any repetition and make a different move:
+
+```python
+if counter > 3 and ((maybe_path == total[counter - 2] and total[counter - 1] == total[counter - 3]) or total[counter - 1] == maybe_path):
+	next_path = reverse(shortestpath[farthest_rob[0]][farthest_rob[1]])[:6]
+```
+
+Changing what `next_path` was actually helped improve some of the outputted answers (taking a slice of length 8 of the shortest path to the entrance instead of length 6, for example). I had no idea how to predict what actually would have worked best for each task, so I just played around with different options until I got a better answer.
+
+This approach worked remarkably well. Most notably, we got a path of length 13839 on Task 5, which was really efficient.
+
+Final Thoughts
+==============
+
+Overall, I really enjoyed the competition! I thought that the unique nature of the optimization round opened lots of possibilities for exploration that more typical competitive programming problems (ones where you just have to pass test cases) lack. The week-long contest window was very helpful for making more progress and diving deeper into the problems (though it did start to get stressful near the end, as I started to run out of ideas to maintain our team’s placing in the leaderboard lol).
+
+I would love to see the CMIMC organizers find a way to keep the longer contest window in the future, while also having an in-person or onsite event. I think there’s something special about in-person events, with everyone together in the same place, that virtual events can’t capture. One possibility would be to emulate the “Power Round” of some math competitions, where teams work on the problems for a week before the competition, then travel to the contest site for an in-person event.
+
+I am graduating from high school this year, so this was unfortunately both my first and last time participating in the CMIMC Programming Contest. I hope that my school continues to participate, however, and I look forward to following how the competition continues to grow and evolve in the future!
+
+import MdxLayout from "@/components/MdxLayout";
+
+export default ({children }) => {
+  return <MdxLayout meta={{title: frontmatter.title, date: frontmatter.date, categories: frontmatter.categories}}>{children}</MdxLayout>;
+}

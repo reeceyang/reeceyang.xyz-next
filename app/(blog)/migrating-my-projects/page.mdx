@@ -1,0 +1,58 @@
+---
+title: Migrating My Projects
+date: 2022-12-27
+excerpt: My web-related services all expire or renew at the end of the year, so recently I’ve been refreshing the hosting for my projects.
+categories: []
+---
+My web-related services all expire or renew at the end of the year, so recently I’ve been refreshing the hosting for my projects. 
+
+### My Setup Before
+
+Previously, I hosted my personal website as a WordPress site on Namecheap web hosting. This setup was convenient at first because I had registered the [reeceyang.xyz](http://reeceyang.xyz) domain through Namecheap, and I could also host the [iowacitymathcircle.org](http://iowacitymathcircle.org) website (also WordPress) on the same Namecheap web hosting instance.
+
+Unfortunately, the price of Namecheap web hosting has been continually increasing over the past few years. In addition, since I was using Namecheap web hosting, I was locked into using Namecheap’s SSL certificates for reeceyang.xyz, which were unnecessarily expensive.
+
+Thus, a few months ago I started looking for alternatives.
+
+### Moving iowacitymathcircle.org to AWS Lightsail
+
+Migrating [iowacitymathcircle.org](http://iowacitymathcircle.org) away from WordPress would have been way too complicated. Instead, I looked for cheaper WordPress hosting, and AWS Lightsail seemed to cost the least. 
+
+The setup process was fairly straightforward; I mainly just followed the AWS documentation. I used WordPress’s built-in export and import functionality. It turns out this doesn’t export any themes or customizations, so I found a separate plug-in that exported/imported customization settings. Lightsail WordPress doesn’t provide email, so I used WP-SMTP with Sendinblue to set up mailing for the wesite.
+
+Almost everything is running smoothly now; the only major problem I’m still facing is the website serves some images using HTTP instead of HTTPS, which causes a mixed-content warning on Firefox. Modifying the WordPress configuration files has not fixed this issue, but I’m fine with putting off solving this to later.
+
+### Migrating reeceyang.xyz to Jekyll
+
+I wanted to try out a static site for [reeceyang.xyz](http://reeceyang.xyz) since I thought having a collection of files would be more transferable and maintainable in the long-term. I researched a few different static site generators (Hugo, 11ty, Hexo, to name a few), but they all seemed too complicated for my purposes. This was a problem because I wanted something fast to setup and easy to use and understand.
+
+It seemed like the best solution was building my own (very simple) static site generator. I had a vision: the generator would be called “sandwich,” and the layout templates would be called “bread” and the content—“ingredients”—would be stored in Markdown files. I would write a script in Python to combine everything together.
+
+I was about to start coding when I discovered that Jekyll basically did everything I wanted “sandwich” to. The documentation was also easy to follow and understand! I immediately installed Ruby and went through the tutorial, and by the end of the day I had successfully deployed my site on GitHub Pages with a GitHub action.
+
+It turns out that Jekyll is super intuitive to me, and the more advanced templating features have allowed me to build cool features into the site that I probably would have struggled with otherwise. I’ve been able to focus more on site design and style (SASS has been cool so far, but I honestly really wish I could use Tailwind). The site content is now stored as Markdown and YAML, and is under version control as well!
+
+It’s definitely been more fun working on [reeceyang.xyz](http://reeceyang.xyz) now compared to the previous WordPress site. I’m excited to keep building cool features and see how this site evolves!
+
+### Moving BobaBoss to Google App Engine
+
+Like all web.lab projects, [BobaBoss](https://bobaboss.reeceyang.xyz/) was hosted on Heroku ([Find out more about BobaBoss here!](https://github.com/reeceyang/bobaboss)). Unfortunately, Heroku stopped offering free dynos in November. 
+
+I wanted to keep BobaBoss running because it’s a cool concept (and a  full-stack demo for my portfolio). Finding affordable hosting was easier said than done, however. I initially thought I could use something like Netlify and tried deploying before realizing that the backend wasn’t running.
+
+I briefly considered converted BobaBoss to use serverless functions to take advantage of free serverless hosting, but ruled this out due to the complexity of getting my backend functionality to work correctly.
+
+After some research, I found out that I could host BobaBoss on Google App Engine (yes, I have projects hosted literally everywhere now. Not mentioned in this blog post are projects running on Vercel, Firebase, AWS Cloudfront/Lambdas, CloudFlare, MIT XVM, and more). App Engine has a very lenient free tier, which helped keep costs down significantly.
+
+The deployment process seemed difficult at first. Getting the right dependencies to install correctly was finicky at first, but it actually ended up being going smoothly. 
+
+---
+This whole experience taught me a lot about working with cloud technologies, and I feel much more comfortable deploying projects across a wide variety of platforms now. I’m happy that everything is working again! 
+
+Thanks for reading ;) If you made it this far, [go rate some boba on BobaBoss!](https://bobaboss.reeceyang.xyz)
+
+import MdxLayout from "@/components/MdxLayout";
+
+export default ({children }) => {
+  return <MdxLayout meta={{title: frontmatter.title, date: frontmatter.date, categories: frontmatter.categories}}>{children}</MdxLayout>;
+}
