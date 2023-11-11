@@ -46,10 +46,13 @@ export default async function Home() {
                       </button>
                     </Link>
                     <Link href="mailto:rya@mit.edu">
-                    <button className="btn">
-                      rya@mit.edu{" "}
-                      <FontAwesomeIcon className="w-6 h-6" icon={faEnvelope} />
-                    </button>
+                      <button className="btn">
+                        rya@mit.edu{" "}
+                        <FontAwesomeIcon
+                          className="w-6 h-6"
+                          icon={faEnvelope}
+                        />
+                      </button>
                     </Link>
                   </div>
                 </div>
@@ -132,7 +135,7 @@ export default async function Home() {
       </div>
       <div className="container max-w-5xl m-auto py-12">
         <h1 className="text-5xl font-bold">Fun Things</h1>
-        <div className="flex flex-col py-6 gap-6">
+        <div className="flex flex-row py-6 gap-6 flex-wrap">
           <div className="card w-96 h-96 shadow-xl bg-base-200 mask mask-square">
             <iframe
               width="100%"
@@ -141,6 +144,14 @@ export default async function Home() {
               src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1488943012&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
             ></iframe>
           </div>
+          <Link href={`/classes`}>
+            <div className="card w-96 h-96 shadow-xl bg-base-200 mask mask-square transition hover:translate-x-2 hover:-translate-y-2">
+              <div className="card-body">
+                <h2 className="card-title">Classes</h2>
+                <p>Classes I&rsquo;ve taken at MIT.</p>
+              </div>
+            </div>
+          </Link>
         </div>
       </div>
     </main>
