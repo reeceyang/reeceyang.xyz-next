@@ -19,7 +19,7 @@ export default async function Home() {
       <div className="bg-pattern">
         <div className="hero min-h-[80vh] bg-[#ffffffcc]">
           <div className="hero-content flex-col lg:flex-row p-0 sm:p-4 max-w-[100vw]">
-            <div className="card bg-base-100 shadow-xl">
+            <div className="card bg-base-100 shadow-xl mb-8">
               <div className="card-body p-4 md:p-12 flex flex-row flex-wrap md:gap-2 md:flex-nowrap">
                 <div>
                   <h1 className="sm:text-5xl font-bold">Hi, I’m Reece!</h1>
@@ -38,7 +38,7 @@ export default async function Home() {
                       <li>Let&rsquo;s work together!</li>
                     </ul>
                   </div>
-                  <div className="flex flex-row gap-6 w-fit m-auto">
+                  <div className="flex flex-row gap-x-6 gap-y-2 w-fit m-auto flex-wrap justify-center">
                     <Link href="/Reece_Yang_Resume.pdf">
                       <button className="btn">
                         Resume{" "}
@@ -68,9 +68,9 @@ export default async function Home() {
                 </div>
               </div>
             </div>
-            <div className="">
+            <div className="hidden lg:block">
               <Link href={`/projects/bobaboss`}>
-                <div className="card w-96 bg-base-200 shadow-xl relative lg:-top-32 lg:z-10 lg:-left-24 -left-4 transition hover:translate-x-2 hover:-translate-y-2">
+                <div className="card w-96 bg-base-200 shadow-xl relative -top-32 z-10 -left-24 transition hover:translate-x-2 hover:-translate-y-2">
                   <div className="card-body">
                     <h2 className="card-title">
                       BobaBoss
@@ -89,7 +89,7 @@ export default async function Home() {
                 </div>
               </Link>
               <Link href={`/${newestPost.slug}`}>
-                <div className="card w-96 bg-base-200 shadow-xl relative top-8 lg:top-32 lg:-left-48 z-10 transition hover:translate-x-2 hover:-translate-y-2">
+                <div className="card w-96 bg-base-200 shadow-xl relative top-32 -left-48 z-10 transition hover:translate-x-2 hover:-translate-y-2">
                   <div className="card-body">
                     <h2 className="card-title">
                       {newestPost.title}
