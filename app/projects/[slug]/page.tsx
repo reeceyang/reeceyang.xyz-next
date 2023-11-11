@@ -7,14 +7,14 @@ export default function Project({ params }: { params: { slug: string } }) {
   const project =
     PROJECTS.find((project) => project.slug === params.slug) ??
     assert.fail(`could not find project with slug ${params.slug}`);
-    
+
   return (
     <div className="prose m-auto py-12">
       <h1>{project.title}</h1>
       <div className="flex flex-row gap-2 mb-2">
       {project.url && (
         <Link href={project.url}>
-          <button className="btn">Visit</button>
+          <button className="btn btn-primary">Visit</button>
         </Link>
       )}
       {project.github_url && (
