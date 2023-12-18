@@ -1,8 +1,6 @@
 import BlogCard from "@/components/BlogCard";
 import ProjectCard from "@/components/ProjectCard";
 import { getSortedPostsData } from "@/utils/posts";
-import { faEnvelope, faFile } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
 import { PROJECTS } from "./projects";
@@ -32,10 +30,9 @@ const Contact = () => (
 
 export default async function Home() {
   const allPostsData = await getSortedPostsData().slice(0, 3);
-  const newestPost = allPostsData[0];
 
   return (
-    <main className="container max-w-4xl m-auto px-4">
+    <>
       <div className="flex flex-row gap-8 py-6">
         <div className="flex-[2_2_0%] flex flex-col gap-8">
           <h1 className="text-5xl font-bold font-serif">
@@ -111,6 +108,6 @@ export default async function Home() {
           </Link>
         </div>
       </div>
-    </main>
+    </>
   );
 }

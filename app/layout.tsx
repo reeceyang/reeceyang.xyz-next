@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -20,7 +19,9 @@ export default function RootLayout({
       </head>
       <body>
         <Header />
-        <div className="overflow-clip">{children}</div>
+        <main className="container max-w-4xl m-auto px-4 overflow-clip">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>
