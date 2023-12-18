@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1 {
+      @apply font-serif;
+    }
+}
+
 .bg-pattern {
   --s: 100px; /* control the size */
   --c1: hsl(44, 47%, 73%);

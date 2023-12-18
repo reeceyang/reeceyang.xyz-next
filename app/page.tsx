@@ -1,110 +1,71 @@
-import BlogCard from '@/components/BlogCard';
-import ProjectCard from '@/components/ProjectCard';
-import { getSortedPostsData } from '@/utils/posts';
-import { faEnvelope, faFile } from '@fortawesome/free-regular-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Image from 'next/image'
-import Link from 'next/link';
-import { PROJECTS } from './projects';
+import BlogCard from "@/components/BlogCard";
+import ProjectCard from "@/components/ProjectCard";
+import { getSortedPostsData } from "@/utils/posts";
+import { faEnvelope, faFile } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
+import Link from "next/link";
+import { PROJECTS } from "./projects";
+import SocialLinks from "@/components/SocialLinks";
 
 const HOME_SLUGS = ["bobaboss", "beaverlens"];
-const HOME_PROJECTS = PROJECTS.filter(({slug}) => HOME_SLUGS.includes(slug));
+const HOME_PROJECTS = PROJECTS.filter(({ slug }) => HOME_SLUGS.includes(slug));
+
+const Bio = () => (
+  <div className="prose max-w-md">
+    I&rsquo;m an undergraduate at <strong>MIT</strong> studying{" "}
+    <strong>Computer Science</strong>. I&rsquo;m interested in{" "}
+    <strong>full-stack engineering</strong> and <strong>UI/UX design</strong>.
+  </div>
+);
+
+const Contact = () => (
+  <div className="flex flex-row gap-x-6 gap-y-2 w-fit flex-wrap justify-center mt-8">
+    <Link href="/Reece_Yang_Resume.pdf">
+      <button className="btn">Resume</button>
+    </Link>
+    <Link href="mailto:rya@mit.edu">
+      <button className="btn">EMAIL</button>
+    </Link>
+  </div>
+);
 
 export default async function Home() {
   const allPostsData = await getSortedPostsData().slice(0, 3);
   const newestPost = allPostsData[0];
 
   return (
-    <main>
-      <div className="bg-pattern">
-        <div className="hero min-h-[80vh] bg-[#ffffffcc]">
-          <div className="hero-content flex-col lg:flex-row p-0 sm:p-4 max-w-[100vw]">
-            <div className="card bg-base-100 shadow-xl mb-8">
-              <div className="card-body p-4 md:p-12 flex flex-row flex-wrap md:gap-2 md:flex-nowrap">
-                <div>
-                  <h1 className="sm:text-5xl font-bold">Hi, I’m Reece!</h1>
-                  <div className="prose md:p-6">
-                    <ul className="sm:text-xl">
-                      <li>
-                        I&rsquo;m an undergraduate student at the{" "}
-                        <strong>Massachusetts Institute of Technology</strong>{" "}
-                        pursuing a Bachelor of Science in{" "}
-                        <strong>Computation and Cognition</strong>.
-                      </li>
-                      <li>
-                        My interests include full-stack web development,
-                        human–computer interaction, writing, and music.
-                      </li>
-                      <li>Let&rsquo;s work together!</li>
-                    </ul>
-                  </div>
-                  <div className="flex flex-row gap-x-6 gap-y-2 w-fit m-auto flex-wrap justify-center">
-                    <Link href="/Reece_Yang_Resume.pdf">
-                      <button className="btn">
-                        Resume{" "}
-                        <FontAwesomeIcon className="w-6 h-6" icon={faFile} />
-                      </button>
-                    </Link>
-                    <Link href="mailto:rya@mit.edu">
-                      <button className="btn">
-                        rya@mit.edu{" "}
-                        <FontAwesomeIcon
-                          className="w-6 h-6"
-                          icon={faEnvelope}
-                        />
-                      </button>
-                    </Link>
-                  </div>
-                </div>
-
-                <div className="m-auto">
-                  <Image
-                    className="mask mask-circle"
-                    src={"/profile_square.jpg"}
-                    alt={""}
-                    width="300"
-                    height="300"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="hidden lg:block">
-              <Link href={`/projects/bobaboss`}>
-                <div className="card w-96 bg-base-200 shadow-xl relative -top-32 z-10 -left-24 transition hover:translate-x-2 hover:-translate-y-2">
-                  <div className="card-body">
-                    <h2 className="card-title">
-                      BobaBoss
-                      <div className="badge badge-primary">Project</div>
-                    </h2>
-                    <p>
-                      Find the best boba in Boston! Review aggregation web app
-                      that lets you explore individual boba flavors across
-                      different shops.
-                    </p>
-                    <div className="card-actions justify-end">
-                      <div className="badge badge-outline">React</div>
-                      <div className="badge badge-outline">MongoDB</div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-              <Link href={`/${newestPost.slug}`}>
-                <div className="card w-96 bg-base-200 shadow-xl relative top-32 -left-48 z-10 transition hover:translate-x-2 hover:-translate-y-2">
-                  <div className="card-body">
-                    <h2 className="card-title">
-                      {newestPost.title}
-                      <div className="badge badge-accent">Blog</div>
-                    </h2>
-                    <p className="line-clamp-2">{newestPost.excerpt}</p>
-                  </div>
-                </div>
-              </Link>
-            </div>
+    <main className="container max-w-4xl m-auto px-4">
+      <div className="flex flex-row gap-8 py-6">
+        <div className="flex-[2_2_0%] flex flex-col gap-8">
+          <h1 className="text-5xl font-bold font-serif">
+            Hi, I&rsquo;m Reece!
+          </h1>
+          <div className="w-min">
+            <SocialLinks />
+          </div>
+          <div className="hidden sm:block">
+            <Bio />
+            <Contact />
           </div>
         </div>
+        <div className="flex-[1_1_0%] m-auto avatar">
+          <Image
+            className="rounded"
+            src={"/profile_square.jpg"}
+            alt={"profile"}
+            width="300"
+            height="300"
+          />
+        </div>
       </div>
-      <div className="container max-w-5xl m-auto py-12 px-4">
-        <h1 className="text-5xl font-bold">Projects</h1>
+      <div className="block sm:hidden mt-8">
+        <Bio />
+        <Contact />
+      </div>
+
+      <div className="container m-auto py-12">
+        <h1 className="text-5xl font-bold font-serif">Projects</h1>
         <div className="flex flex-col py-6 gap-6">
           {HOME_PROJECTS.map((project, i) => (
             <ProjectCard
@@ -115,12 +76,10 @@ export default async function Home() {
           ))}
         </div>
         <Link href="/projects">
-          <button className="btn btn-primary m-auto block">
-            View All Projects
-          </button>
+          <button className="btn m-auto block">View All Projects</button>
         </Link>
       </div>
-      <div className="container max-w-5xl m-auto py-12 px-4">
+      <div className="container m-auto py-12">
         <h1 className="text-5xl font-bold">Blog</h1>
         <div className="flex flex-col py-6 gap-6">
           {allPostsData.map((blogPost) => (
@@ -128,12 +87,10 @@ export default async function Home() {
           ))}
         </div>
         <Link href="/blog">
-          <button className="btn btn-secondary m-auto block">
-            View All Posts
-          </button>
+          <button className="btn m-auto block">View All Posts</button>
         </Link>
       </div>
-      <div className="container max-w-5xl m-auto py-12 px-4">
+      <div className="container m-auto py-12">
         <h1 className="text-5xl font-bold">Fun Things</h1>
         <div className="flex flex-row py-6 gap-6 flex-wrap">
           <div className="card w-96 h-96 shadow-xl bg-base-200 mask mask-square">
