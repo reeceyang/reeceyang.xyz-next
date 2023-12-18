@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const Header = () => (
-  <div className="navbar bg-white min-h-min mb-8">
+  <div className="navbar bg-white min-h-min mb-12">
     <ul className="menu menu-md menu-horizontal max-w-4xl m-auto w-full p-0">
       <li>
         <Link href="/" className="font-bold">

@@ -32,8 +32,8 @@ export default async function Home() {
   const allPostsData = await getSortedPostsData().slice(0, 3);
 
   return (
-    <>
-      <div className="flex flex-row gap-8 py-6">
+    <div className="flex flex-col gap-32">
+      <div className="flex flex-row gap-8">
         <div className="flex-[2_2_0%] flex flex-col gap-8">
           <h1 className="text-5xl font-bold font-serif">
             Hi, I&rsquo;m Reece!
@@ -61,7 +61,7 @@ export default async function Home() {
         <Contact />
       </div>
 
-      <div className="container m-auto py-12">
+      <div>
         <h1 className="text-5xl font-bold font-serif">Projects</h1>
         <div className="flex flex-col py-6 gap-6">
           {HOME_PROJECTS.map((project, i) => (
@@ -76,7 +76,7 @@ export default async function Home() {
           <button className="btn m-auto block">View All Projects</button>
         </Link>
       </div>
-      <div className="container m-auto py-12">
+      <div>
         <h1 className="text-5xl font-bold">Blog</h1>
         <div className="flex flex-col py-6 gap-6">
           {allPostsData.map((blogPost) => (
@@ -87,7 +87,7 @@ export default async function Home() {
           <button className="btn m-auto block">View All Posts</button>
         </Link>
       </div>
-      <div className="container m-auto py-12">
+      <div>
         <h1 className="text-5xl font-bold">Fun Things</h1>
         <div className="flex flex-row py-6 gap-6 flex-wrap">
           <div className="card w-96 h-96 shadow-xl bg-base-200 mask mask-square">
@@ -108,6 +108,6 @@ export default async function Home() {
           </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 }
