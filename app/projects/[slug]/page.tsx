@@ -11,7 +11,7 @@ export default function Project({ params }: { params: { slug: string } }) {
   return (
     <div className="prose">
       <h1>{project.title}</h1>
-      <div className="flex flex-row gap-2 mb-2">
+      <div className="flex flex-row gap-2 mb-2 not-prose">
         {project.url && (
           <Link href={project.url}>
             <button className="btn btn-primary">Visit</button>
@@ -19,24 +19,24 @@ export default function Project({ params }: { params: { slug: string } }) {
         )}
         {project.github_url && (
           <Link href={project.github_url}>
-            <button className="btn">View Repo</button>
+            <button className="btn">View Source</button>
           </Link>
         )}
-        <div className="ml-auto my-auto w-min flex flex-row gap-2">
-          {project.categories.map((category) => (
-            <div
-              className="badge badge-outline"
-              key={`${project.slug} ${category}`}
-            >
-              {category}
-            </div>
-          ))}
-        </div>
       </div>
       <div className="not-prose">
         <ProjectMockup project={project} />
       </div>
       <p>{project.description}</p>
+      <div className="my-auto w-min flex flex-row gap-2">
+        {project.categories.map((category) => (
+          <div
+            className="badge badge-outline"
+            key={`${project.slug} ${category}`}
+          >
+            {category}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

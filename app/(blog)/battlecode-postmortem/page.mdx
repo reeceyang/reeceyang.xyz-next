@@ -7,10 +7,6 @@ categories: ["Java", "Optimization"]
 
 I recently participated in the MIT Battlecode competition. Battlecode is a programming competition where competitors program virtual robots to battle each other. This was my team's first time competing; we were able to place 2nd in the MIT Newbie tournament! A recap of our strategy is included below. The source code for our robot is also [available on GitHub](https://github.com/reeceyang/battlecode-2023).
 
-# Battlecode 2023 Postmortem
-
-Strategy report for team *no thoughts head empty*!
-
 ## Carriers
 
 We set carriers to only acquire either mana or adamantium immediately after they are created — i.e. they only target that one type of well throughout the duration of their lifespan. To find mana wells, carriers would start from an adamantium well (since they can usually be found more easily) and fan out in five different directions based on the bot’s ID number modulo 5. 

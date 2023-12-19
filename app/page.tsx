@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PROJECTS } from "./projects";
 import SocialLinks from "@/components/SocialLinks";
+import StyledCard from "@/components/StyledCard";
 
 const HOME_SLUGS = ["bobaboss", "beaverlens"];
 const HOME_PROJECTS = PROJECTS.filter(({ slug }) => HOME_SLUGS.includes(slug));
@@ -80,7 +81,7 @@ export default async function Home() {
       </div>
       <div>
         <h1 className="text-5xl font-bold">Blog</h1>
-        <div className="flex flex-col py-6 gap-6">
+        <div className="flex flex-col py-6 gap-12">
           {allPostsData.map((blogPost) => (
             <BlogCard blogPost={blogPost} key={blogPost.slug} />
           ))}
@@ -101,12 +102,12 @@ export default async function Home() {
             ></iframe>
           </div>
           <Link href={`/classes`}>
-            <div className="card w-96 h-96 shadow-xl bg-base-200 mask mask-square transition hover:translate-x-2 hover:-translate-y-2">
+            <StyledCard className="w-96 h-96">
               <div className="card-body">
                 <h2 className="card-title">Classes</h2>
                 <p>Classes I&rsquo;ve taken at MIT.</p>
               </div>
-            </div>
+            </StyledCard>
           </Link>
         </div>
       </div>

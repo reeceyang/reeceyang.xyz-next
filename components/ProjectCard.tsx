@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
+import StyledCard from "./StyledCard";
 
 export const ProjectMockup = ({ project }: { project: Project }) => {
   return (
@@ -48,7 +49,7 @@ export default function ProjectCard({
 
   return (
     <Link href={`/projects/${project.slug}`}>
-      <div className="card shadow-md outline outline-1 outline-base-200 transition hover:bg-base-200 duration-200">
+      <StyledCard>
         <div
           className={`flex flex-row ${
             flip ? "flex-wrap" : "flex-wrap-reverse"
@@ -67,7 +68,7 @@ export default function ProjectCard({
           </div>
           {!flip && sidebar}
         </div>
-      </div>
+      </StyledCard>
     </Link>
   );
 }

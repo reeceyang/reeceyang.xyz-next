@@ -1,9 +1,10 @@
 import Link from "next/link";
+import StyledCard from "./StyledCard";
 
 export default function BlogCard({ blogPost }: { blogPost: BlogPost }) {
   return (
     <Link href={`/${blogPost.slug}`}>
-      <div className="card shadow-xl bg-base-200 transition hover:translate-x-2 hover:-translate-y-2">
+      <StyledCard>
         <div className="card-body">
           <div className="flex flex-row">
             <h2 className="card-title">{blogPost.title}</h2>
@@ -12,7 +13,7 @@ export default function BlogCard({ blogPost }: { blogPost: BlogPost }) {
             </span>
           </div>
           <p className="line-clamp-2">{blogPost.excerpt}</p>
-          <div className="card-actions justify-end">
+          <div className="card-actions">
             {blogPost.categories.map((category) => (
               <div
                 className="badge badge-outline"
@@ -23,7 +24,7 @@ export default function BlogCard({ blogPost }: { blogPost: BlogPost }) {
             ))}
           </div>
         </div>
-      </div>
+      </StyledCard>
     </Link>
   );
 }
