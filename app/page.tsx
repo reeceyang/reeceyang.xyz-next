@@ -33,37 +33,39 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col gap-32">
-      <div className="flex flex-row gap-8">
-        <div className="flex-[2_2_0%] flex flex-col gap-8">
-          <h1 className="text-5xl font-bold font-serif">
-            Hi, I&rsquo;m Reece!
-          </h1>
-          <div className="w-min">
-            <SocialLinks />
+      <div>
+        <div className="flex flex-row gap-8">
+          <div className="flex-[2_2_0%] flex flex-col gap-8">
+            <h1 className="text-5xl font-bold font-serif">
+              Hi, I&rsquo;m Reece!
+            </h1>
+            <div className="w-min">
+              <SocialLinks />
+            </div>
+            <div className="hidden sm:block">
+              <Bio />
+              <Contact />
+            </div>
           </div>
-          <div className="hidden sm:block">
-            <Bio />
-            <Contact />
+          <div className="flex-[1_1_0%] m-auto avatar">
+            <Image
+              className="rounded"
+              src={"/profile_square.jpg"}
+              alt={"profile"}
+              width="300"
+              height="300"
+            />
           </div>
         </div>
-        <div className="flex-[1_1_0%] m-auto avatar">
-          <Image
-            className="rounded"
-            src={"/profile_square.jpg"}
-            alt={"profile"}
-            width="300"
-            height="300"
-          />
+        <div className="block sm:hidden mt-8">
+          <Bio />
+          <Contact />
         </div>
-      </div>
-      <div className="block sm:hidden mt-8">
-        <Bio />
-        <Contact />
       </div>
 
       <div>
         <h1 className="text-5xl font-bold font-serif">Projects</h1>
-        <div className="flex flex-col py-6 gap-6">
+        <div className="flex flex-col py-6 gap-12">
           {HOME_PROJECTS.map((project, i) => (
             <ProjectCard
               project={project}
