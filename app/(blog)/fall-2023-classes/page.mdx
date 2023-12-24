@@ -1,0 +1,52 @@
+---
+title: "Fall 2023 Classes"
+date: 2023-12-24
+excerpt: A review of the classes I took this semester.
+categories: []
+---
+
+A review of the classes I took this semester.
+
+## 6.1910 – Computation Structures
+
+This was probably one of my favorite MIT classes I’ve taken. I only had a vague idea about how modern computers worked before the class started, so ultimately designing a pipelined processor from scratch that could run RISC-V assembly programs was very fulfilling!
+
+Unfortunately, I didn’t find the lectures very useful since they didn’t do much more than go over the notes. All of the material was very interesting though; in particular I finally understood how caches work. I was pleasantly surprised to find that some of the operating systems concepts were familiar from when I went through [Writing an OS in Rust](https://os.phil-opp.com/) over the summer, and I gained a better understanding of page tables and exception handling through the class material. I also enjoyed doing the semaphore questions, all of which involved parallelizing some food-related task (making pancakes, cookies, donuts, etc.).
+
+The lab assignments were generally well-structured. Some of the lab components were open-ended: for example, optimizing an adder to be faster than some critical path threshold (I built a Kogge-Stone CLA). The design project is also a cool challenge, although I have to agree that [the time-spent to points-earned ratio is extremely high](https://mitadmissions.org/blogs/entry/school-projects/).
+
+This class (along with 6.2020) also helped me better understand what levels of abstraction I like to work at. Designing circuits was cool, but I found that I was more interested in the operating systems, distributing computing, and performance optimization material that the class covered. These are all topics I’m hoping to explore more in my next few semesters at MIT.
+
+## 6.100B – Introduction to Computational Thinking and Data Science
+
+This half-semester class covers a lot of very different material—dynamic programming, graph traversal, probability, modeling, clustering—very quickly and without much detail. I only took this class to fulfill the registration requirement, so I was probably not the target audience for this class since I already knew most of the content. I can’t really speak to whether this class is effective at teaching the material or not, but even so I think it could probably benefit from slowing down a bit and going more in-depth into a smaller set of topics.
+
+## 6.2020 – Electronics Project Laboratory
+
+I wanted to explore analog circuits more, so I took this class. In 6.2020, you learn how to use various components like op-amps and transistors to build simple circuits. The projects are very interesting; for example, you build a “color organ” that takes an audio signal and flashes different LEDs corresponding to the frequencies in the signal. The homework grading is also very fair—if you get a question correct and show your work, you earn 1 point. If you get it incorrect but show your work, you still earn 0.9 points. Otherwise, you earn 0 points.
+
+I feel much more confident about how basic electronic components work now and have a more intuitive understanding of voltage and capacitance. However, I really disliked the process of debugging incorrect wires on a breadboard. 
+
+I think I’m satisfied with the amount of exposure to analog circuits I gained from this class, and will stick to software for the time being!
+
+## 18.C06 – Linear Algebra and Optimization
+
+I took this class to satisfy a math requirement. The class first goes over linear algebra fundamentals like subspaces and linear transformations, then covers applications like gradient descent. You also use Julia to do questions on the problem sets and projects. 
+
+I thought the class was generally well-taught. While I only attended a few lectures, my recitation instructor was very good. I enjoyed the first half of the class a lot since I found I understood all the concepts very well, which rarely happens at MIT. The class got more difficult as it progressed, but it was still manageable. 
+
+---
+
+At the start of the semester, I was considering pursuing a minor in architecture, so I attended the first few classes of 4.021 – How to Design, which is the pre-req for all of the design studio classes. While the assignments were interesting, the instructors seemed somewhat disorganized and I didn’t like the class format. I probably won’t do the architecture minor anymore, but I’ll continue practicing design on my own.
+
+I also registered for 21W.748 – Apocalyptic Storytelling and attended the first few classes. It seemed like a super cool class—you get to watch movies like the original *Godzilla* and write your own apocalyptic narratives—I just decided not to take it this semester.
+
+---
+
+[All the classes I've taken at MIT.](/classes)
+
+import MdxLayout from "@/components/MdxLayout";
+
+export default ({children }) => {
+  return <MdxLayout meta={{title: frontmatter.title, date: frontmatter.date, categories: frontmatter.categories}}>{children}</MdxLayout>;
+}
