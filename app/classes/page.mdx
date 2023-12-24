@@ -1,8 +1,18 @@
-# Classes
+---
+title: "Classes"
+categories: []
+---
 
 MIT classes I’ve taken.
 
 ### By Semester
+
+Fall 2023:
+
+*   6.100B – Introduction to Computational Thinking and Data Science
+*   6.1910 – Computation Structures
+*   6.2020 – Electronics Project Laboratory
+*   18.C06 – Linear Algebra and Optimization
 
 Spring 2023:
 
@@ -18,7 +28,7 @@ IAP 2023:
 
 Fall 2022:
 
-*   6.4100[6.034] - Artificial Intelligence
+*   6.4100\[6.034\] - Artificial Intelligence
 *   9.85 - Infant and Early Childhood Cognition 
 *   21G.049/21H.145/4.674 - French Photography 
 
@@ -45,54 +55,70 @@ Fall 2021:
 
 ### By Course
 
-6
-
-6.006, 6.009, 6.148, 6.4100
-
-9
-
-9.00, 9.01, 9.85
-
-12
-
-12.409
-
-21
-
-21G.049
-
-CC
-
-CC.010, CC.011, CC. 110, CC.1802, CC.802
-
-CMS
-
-CMS.S61
+<table>
+  <tbody>
+    <tr>
+      <td>6</td>
+      <td>6.006, 6.009, 6.148, 6.4100, 6.9610, 6.1020, 6.0004, 6.100B, 6.1910, 6.2020</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>9.00, 9.01, 9.85, 9.35, 9.53</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>12.409</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>18.C06</td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td>21G.049, 21W.755</td>
+    </tr>
+    <tr>
+      <td>CC</td>
+      <td>C.010, CC.011, CC. 110, CC.1802, CC.802</td>
+    </tr>
+    <tr>
+      <td>CMS</td>
+      <td>CMS.S61</td>
+    </tr>
+  </tbody>
+</table>
 
 ### By Personal Tier-Ranking
 
-S
-
-6.148, CMS.S61, 12.409, 21G.049
-
-A
-
-6.009, CC.1802, 9.85
-
-B
-
-6.006, 9.00, 9.01, CC.802, 6.4100
-
-C
-
-CC.011
-
-D
-
-CC.010, CC. 110
+<table>
+  <tbody>
+    <tr>
+      <td>S</td>
+      <td>6.148, CMS.S61, 12.409, 21G.049, 6.9610, 21W.755, 6.0004, 6.1910</td>
+    </tr>
+    <tr>
+      <td>A</td>
+      <td>6.009, CC.1802, 9.85, 9.53, 9.35, 18.C06, 6.2020</td>
+    </tr>
+    <tr>
+      <td>B</td>
+      <td>6.006, 9.00, 9.01, CC.802, 6.4100, 6.1020, 6.100B</td>
+    </tr>
+    <tr>
+      <td>C</td>
+      <td>CC.011</td>
+    </tr>
+    <tr>
+      <td>D</td>
+      <td>CC.010, CC. 110</td>
+    </tr>
+  </tbody>
+</table>
 
 —inspired by [actions, not words.](https://www.alanzhu.me/mit)
 
-export default ({children}) => {
-  return <div className="m-auto prose py-12 px-4">{children}</div>;
+import MdxLayout from "@/components/MdxLayout";
+
+export default ({children }) => {
+  return <MdxLayout meta={{title: frontmatter.title, date: frontmatter.date, categories: frontmatter.categories}}>{children}</MdxLayout>;
 }

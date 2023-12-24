@@ -16,12 +16,13 @@ export default function MdxLayout({
         ))}
       </div>
       <p>
-        {new Date(meta.date).toLocaleDateString(undefined, {
-          weekday: "long",
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}
+        {meta.date &&
+          new Date(meta.date).toLocaleDateString(undefined, {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
       </p>
       {children}
     </div>
