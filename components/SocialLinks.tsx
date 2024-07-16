@@ -1,3 +1,5 @@
+"use client";
+
 import {
   IconDefinition,
   faGithub,
@@ -6,6 +8,7 @@ import {
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import ClickSoundEffectTrigger from "./ClickSoundEffectTrigger";
 
 const SOCIAL_LINKS: { url: string; icon: IconDefinition }[] = [
   { url: "https://github.com/reeceyang", icon: faGithub },
@@ -21,10 +24,12 @@ const SocialLinks = () => {
     <div className="grid grid-flow-col gap-4">
       {SOCIAL_LINKS.map(({ url, icon }) => (
         <Link href={url} key={url}>
-          <FontAwesomeIcon
-            className="w-6 h-6 link transition hover:scale-110"
-            icon={icon}
-          />
+          <ClickSoundEffectTrigger>
+            <FontAwesomeIcon
+              className="w-6 h-6 link transition hover:scale-110"
+              icon={icon}
+            />
+          </ClickSoundEffectTrigger>
         </Link>
       ))}
     </div>
