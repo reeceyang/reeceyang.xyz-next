@@ -20,11 +20,13 @@ export default function RootLayout({
       </head>
       <body className="bg-base-200">
         <AudioElements />
-        <Header />
-        <main className="container max-w-4xl m-auto px-4 overflow-clip">
-          {children}
-        </main>
-        <Footer />
+        <div className="flex flex-col min-h-screen">
+          <Header />
+          <main className="container max-w-4xl m-auto px-4 overflow-clip flex-grow">
+            {children}
+          </main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
