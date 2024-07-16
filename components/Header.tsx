@@ -5,7 +5,7 @@ import ClickSoundEffectTrigger from "./ClickSoundEffectTrigger";
 
 const Header = () => (
   <>
-    <div className="navbar min-h-min mb-12 fixed glass">
+    <div className="navbar min-h-min mb-12 fixed glass z-50">
       <ul className="menu menu-md menu-horizontal max-w-4xl m-auto w-full p-0">
         <ClickSoundEffectTrigger>
           <li>
