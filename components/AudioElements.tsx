@@ -8,7 +8,7 @@ const AudioElements = () => {
   return (
     <>
       {CLICK_AUDIO_IDS.map((id, i) => (
-        <audio id={id} src={`/click ${i}.mp3`} />
+        <audio id={id} src={`/click ${i}.mp3`} key={id} />
       ))}
     </>
   );
