@@ -1,4 +1,5 @@
 import { PROJECTS } from "@/app/projects";
+import Button from "@/components/Button";
 import { ProjectMockup } from "@/components/ProjectCard";
 import assert from "assert";
 import Link from "next/link";
@@ -14,12 +15,12 @@ export default function Project({ params }: { params: { slug: string } }) {
       <div className="flex flex-row gap-2 mb-2 not-prose">
         {project.url && (
           <Link href={project.url}>
-            <button className="btn btn-primary">Visit</button>
+            <Button>Visit</Button>
           </Link>
         )}
         {project.github_url && (
           <Link href={project.github_url}>
-            <button className="btn">View Source</button>
+            <Button>View Source</Button>
           </Link>
         )}
       </div>

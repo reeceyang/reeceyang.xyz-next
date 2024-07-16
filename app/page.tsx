@@ -6,6 +6,8 @@ import Link from "next/link";
 import { PROJECTS } from "./projects";
 import SocialLinks from "@/components/SocialLinks";
 import StyledCard from "@/components/StyledCard";
+import Button from "@/components/Button";
+import { Suspense } from "react";
 
 const HOME_SLUGS = ["bobaboss", "beaverlens"];
 const HOME_PROJECTS = PROJECTS.filter(({ slug }) => HOME_SLUGS.includes(slug));
@@ -21,10 +23,14 @@ const Bio = () => (
 const Contact = () => (
   <div className="flex flex-row gap-x-6 gap-y-2 w-fit flex-wrap justify-center mt-8">
     <Link href="/Reece_Yang_Resume.pdf">
-      <button className="btn">Resume</button>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Button>Resume</Button>
+      </Suspense>
     </Link>
     <Link href="mailto:rya@mit.edu">
-      <button className="btn">EMAIL</button>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Button>Email</Button>
+      </Suspense>
     </Link>
   </div>
 );
@@ -76,7 +82,7 @@ export default async function Home() {
           ))}
         </div>
         <Link href="/projects">
-          <button className="btn m-auto block">View All Projects</button>
+          <Button compact={false}>View All Projects</Button>
         </Link>
       </div>
       <div>
@@ -87,7 +93,7 @@ export default async function Home() {
           ))}
         </div>
         <Link href="/blog">
-          <button className="btn m-auto block">View All Posts</button>
+          <Button compact={false}>View All Posts</Button>
         </Link>
       </div>
       <div>

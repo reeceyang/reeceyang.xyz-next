@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AudioElements from "@/components/AudioElements";
 
 export const metadata: Metadata = {
   title: "Reece Yang",
@@ -17,7 +18,8 @@ export default function RootLayout({
       <head>
         <link rel="stylesheet" href="https://use.typekit.net/baw1rzu.css" />
       </head>
-      <body>
+      <body className="bg-base-200">
+        <AudioElements />
         <Header />
         <main className="container max-w-4xl m-auto px-4 overflow-clip">
           {children}

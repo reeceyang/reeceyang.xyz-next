@@ -3,7 +3,7 @@ import SocialLinks from "./SocialLinks";
 
 export default function Footer() {
   return (
-    <footer className="footer footer-center p-10 bg-base-200 text-base-content rounded mt-12">
+    <footer className="footer footer-center p-10 bg-base-300 text-base-content rounded mt-12">
       <div className="grid grid-flow-col gap-4">
         <Link href="/" className="link link-hover">
           Home
