@@ -13,8 +13,7 @@ export default function Project({ params }: { params: { slug: string } }) {
     <div className="flex flex-row flex-wrap gap-8">
       <div className="flex flex-col gap-8 flex-1">
         <div className="prose">
-          <h1 className="text-5xl font-bold">{project.title}</h1>
-
+          <h1 className="text-5xl font-bold mb-0">{project.title}</h1>
           <p>{project.description}</p>
           <div className="my-auto w-min flex flex-row gap-2">
             {project.categories.map((category) => (
