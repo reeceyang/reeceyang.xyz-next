@@ -40,7 +40,7 @@ export default async function Home() {
   const allPostsData = await getSortedPostsData().slice(0, 3);
 
   return (
-    <div className="flex flex-col gap-32">
+    <div className="flex flex-col gap-48">
       <div className="mt-[16vh]">
         <div className="flex flex-row gap-8">
           <div className="flex-[2_2_0%] flex flex-col gap-8">
@@ -82,30 +82,24 @@ export default async function Home() {
           <Button compact={false}>View All Projects</Button>
         </Link>
       </div>
+
       <div>
         <h1 className="text-5xl font-bold">Blog</h1>
-        <div className="flex flex-col py-6 gap-12">
+        <div className="flex flex-col mt-6 py-6 gap-6">
           {allPostsData.map((blogPost) => (
-            <BlogCard blogPost={blogPost} key={blogPost.slug} />
+            <BlogCard blogPost={blogPost} key={blogPost.slug} divider />
           ))}
         </div>
         <Link href="/blog">
           <Button compact={false}>View All Posts</Button>
         </Link>
       </div>
+
       <div>
-        <h1 className="text-5xl font-bold">Fun Things</h1>
-        <div className="flex flex-row py-6 gap-6 flex-wrap">
-          <div className="card w-96 h-96 shadow-xl bg-base-200 mask mask-square">
-            <iframe
-              width="100%"
-              height="100%"
-              allow="autoplay"
-              src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1488943012&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
-            ></iframe>
-          </div>
+        <h1 className="text-5xl font-bold">Links</h1>
+        <div className="flex flex-col py-6 gap-6 flex-wrap">
           <Link href={`/classes`}>
-            <StyledCard className="w-96 h-96">
+            <StyledCard className="w-full">
               <div className="card-body">
                 <h2 className="card-title">Classes</h2>
                 <p>Classes I&rsquo;ve taken at MIT.</p>
