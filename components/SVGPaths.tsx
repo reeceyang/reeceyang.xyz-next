@@ -13,3 +13,39 @@ export const FlowerPath = () => (
     stroke-width="8"
   />
 );
+
+export const FlowersAndLeaves = () => (
+  <>
+    <svg
+      className="w-16 hover:-rotate-6 hover:-translate-y-1 transition"
+      width="259"
+      height="328"
+      viewBox="0 0 259 328"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <LeafPath />
+    </svg>
+    <svg
+      className="w-16 mt-4 hover:-rotate-6 hover:translate-y-2 transition"
+      width="257"
+      height="255"
+      viewBox="0 0 257 255"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <FlowerPath />
+    </svg>
+
+    <svg
+      className="w-16 rotate-12 hover:rotate-6 hover:-translate-y-1 transition"
+      width="259"
+      height="328"
+      viewBox="0 0 259 328"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <LeafPath />
+    </svg>
+  </>
+);
