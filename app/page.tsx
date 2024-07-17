@@ -117,6 +117,23 @@ export default async function Home() {
           </Link>
         </div>
       </div>
+
+      <div className="mt-20 mb-40">
+        <svg className="absolute overflow-visible">
+          <path
+            d="M -9999 0 C 0 0, 400 200, 9999 -500"
+            stroke="black"
+            fill="transparent"
+          />
+        </svg>
+        <svg className="absolute overflow-visible">
+          <path
+            d="M -9999 0 C 0 0, 400 200, 9999 -400"
+            stroke="black"
+            fill="transparent"
+          />
+        </svg>
+      </div>
     </div>
   );
 }
