@@ -8,6 +8,7 @@ import SocialLinks from "@/components/SocialLinks";
 import StyledCard from "@/components/StyledCard";
 import Button from "@/components/Button";
 import { Suspense } from "react";
+import { LeafPath, FlowerPath } from "@/components/SVGPaths";
 
 const HOME_SLUGS = ["bobaboss", "beaverlens"];
 const HOME_PROJECTS = PROJECTS.filter(({ slug }) => HOME_SLUGS.includes(slug));
@@ -40,7 +41,7 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col gap-32">
-      <div>
+      <div className="mt-[16vh]">
         <div className="flex flex-row gap-8">
           <div className="flex-[2_2_0%] flex flex-col gap-8">
             <h1 className="text-5xl font-bold font-serif">
@@ -67,6 +68,40 @@ export default async function Home() {
         <div className="block sm:hidden mt-8">
           <Bio />
           <Contact />
+        </div>
+
+        <div className="flex flex-row mx-auto h-24 w-min mb-20">
+          <svg
+            className="w-16 hover:-rotate-6 hover:-translate-y-1 transition"
+            width="259"
+            height="328"
+            viewBox="0 0 259 328"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <LeafPath />
+          </svg>
+          <svg
+            className="w-16 mt-4 hover:-rotate-6 hover:translate-y-2 transition"
+            width="257"
+            height="255"
+            viewBox="0 0 257 255"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <FlowerPath />
+          </svg>
+
+          <svg
+            className="w-16 rotate-12 hover:rotate-6 hover:-translate-y-1 transition"
+            width="259"
+            height="328"
+            viewBox="0 0 259 328"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <LeafPath />
+          </svg>
         </div>
       </div>
 
