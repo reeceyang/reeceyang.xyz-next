@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import StyledCard from "./StyledCard";
+import Button from "./Button";
+import RandomDivider from "./RandomDivider";
 
 export const ProjectMockup = ({ project }: { project: Project }) => {
   return (
@@ -24,50 +25,45 @@ export const ProjectMockup = ({ project }: { project: Project }) => {
 
 export default function ProjectCard({
   project,
-  flip = false,
+  divider = false,
 }: {
   project: Project;
-  flip?: boolean;
+  divider?: boolean;
 }) {
-  const sidebar = (
-    <div className="card-body flex-[1_0_20rem]">
-      <h2 className="card-title">{project.title}</h2>
-      <p>{project.description}</p>
-      <div className="card-actions">
-        {project.categories.map((category) => (
-          <div
-            className="badge badge-outline"
-            key={`${project.slug} ${category}`}
-          >
-            {category}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-
   return (
-    <Link href={`/projects/${project.slug}`}>
-      <StyledCard>
-        <div
-          className={`flex flex-row ${
-            flip ? "flex-wrap" : "flex-wrap-reverse"
-          }`}
-        >
-          {flip && sidebar}
-          <div className="flex-[1_0_20rem] card-body">
-            {project.image_src && (
-              <Image
-                width="1600"
-                height="900"
-                src={project.image_src}
-                alt={`${project.title} image`}
-              />
+    <>
+      <div className="flex flex-row flex-wrap gap-8">
+        <div className="flex flex-col gap-4 flex-1">
+          <h2 className="card-title">{project.title}</h2>
+          <p>{project.description}</p>
+          <div className="w-min flex flex-row gap-2">
+            {project.categories.map((category) => (
+              <div
+                className="badge badge-outline text-nowrap"
+                key={`${project.slug} ${category}`}
+              >
+                {category}
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-row gap-2 mb-2 not-prose">
+            {project.url && (
+              <Link href={project.url} target="_blank">
+                <Button>Visit</Button>
+              </Link>
+            )}
+            {project.github_url && (
+              <Link href={project.github_url} target="_blank">
+                <Button>View Source</Button>
+              </Link>
             )}
           </div>
-          {!flip && sidebar}
         </div>
-      </StyledCard>
-    </Link>
+        <div className="w-1/2 flex-1">
+          <ProjectMockup project={project} />
+        </div>
+      </div>
+      {divider && <RandomDivider />}
+    </>
   );
 }

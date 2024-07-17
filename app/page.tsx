@@ -16,7 +16,7 @@ const HOME_PROJECTS = PROJECTS.filter(({ slug }) => HOME_SLUGS.includes(slug));
 const Bio = () => (
   <div className="prose max-w-md">
     I&rsquo;m an undergraduate at <strong>MIT</strong> studying{" "}
-    <strong>Computer Science</strong>. I&rsquo;m interested in{" "}
+    <strong>Computer Science</strong>, interested in{" "}
     <strong>full-stack engineering</strong> and <strong>UI/UX design</strong>.
   </div>
 );
@@ -50,12 +50,12 @@ export default async function Home() {
             <div className="w-min">
               <SocialLinks />
             </div>
-            <div className="hidden sm:block">
+            <div>
               <Bio />
               <Contact />
             </div>
           </div>
-          <div className="flex-[1_1_0%] m-auto avatar">
+          <div className="flex-[1_1_0%] m-auto avatar hidden sm:block">
             <Image
               className="rounded"
               src={"/profile_square.jpg"}
@@ -65,10 +65,6 @@ export default async function Home() {
             />
           </div>
         </div>
-        <div className="block sm:hidden mt-8">
-          <Bio />
-          <Contact />
-        </div>
 
         <div className="flex flex-row mx-auto h-24 w-min mb-20">
           <FlowersAndLeaves />
@@ -77,13 +73,9 @@ export default async function Home() {
 
       <div>
         <h1 className="text-5xl font-bold font-serif">Projects</h1>
-        <div className="flex flex-col py-6 gap-12">
+        <div className="flex flex-col mt-6 py-6 gap-12">
           {HOME_PROJECTS.map((project, i) => (
-            <ProjectCard
-              project={project}
-              key={project.slug}
-              flip={i % 2 == 1}
-            />
+            <ProjectCard project={project} key={project.slug} divider />
           ))}
         </div>
         <Link href="/projects">

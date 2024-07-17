@@ -6,8 +6,12 @@ export default async function Projects() {
     <>
       <h1 className="text-5xl font-bold">Projects</h1>
       <div className="flex flex-col py-6 gap-12">
-        {PROJECTS.map((project) => (
-          <ProjectCard project={project} key={project.slug} flip />
+        {PROJECTS.map((project, i) => (
+          <ProjectCard
+            project={project}
+            key={project.slug}
+            divider={i < PROJECTS.length - 1}
+          />
         ))}
       </div>
     </>

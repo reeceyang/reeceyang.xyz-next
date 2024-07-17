@@ -4,6 +4,7 @@ import { ProjectMockup } from "@/components/ProjectCard";
 import assert from "assert";
 import Link from "next/link";
 
+// this page isn't linked to anywhere in the site currently
 export default function Project({ params }: { params: { slug: string } }) {
   const project =
     PROJECTS.find((project) => project.slug === params.slug) ??
