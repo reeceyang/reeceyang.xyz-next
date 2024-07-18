@@ -46,7 +46,7 @@ export default function ProjectCard({
               </div>
             ))}
           </div>
-          <div className="flex flex-row gap-2 mb-2 not-prose">
+          <div className="flex flex-row gap-2 mt-2 mb-2 not-prose">
             {project.url && (
               <Link href={project.url} target="_blank">
                 <Button>Visit</Button>

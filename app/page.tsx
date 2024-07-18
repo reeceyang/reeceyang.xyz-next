@@ -7,8 +7,8 @@ import { PROJECTS } from "./projects";
 import SocialLinks from "@/components/SocialLinks";
 import StyledCard from "@/components/StyledCard";
 import Button from "@/components/Button";
-import { Suspense } from "react";
 import { FlowersAndLeaves } from "@/components/SVGPaths";
+import RandomDivider from "@/components/RandomDivider";
 
 const HOME_SLUGS = ["bobaboss", "beaverlens"];
 const HOME_PROJECTS = PROJECTS.filter(({ slug }) => HOME_SLUGS.includes(slug));
@@ -24,14 +24,10 @@ const Bio = () => (
 const Contact = () => (
   <div className="flex flex-row gap-x-6 gap-y-2 w-fit flex-wrap justify-center mt-8">
     <Link href="/Reece_Yang_Resume.pdf">
-      <Suspense fallback={<div>Loading...</div>}>
-        <Button>Resume</Button>
-      </Suspense>
+      <Button>Resume</Button>
     </Link>
     <Link href="mailto:rya@mit.edu">
-      <Suspense fallback={<div>Loading...</div>}>
-        <Button>Email</Button>
-      </Suspense>
+      <Button>Email</Button>
     </Link>
   </div>
 );
@@ -41,7 +37,7 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col gap-48">
-      <div className="mt-[16vh]">
+      <div className="mt-[16vh] mb-[18vh]">
         <div className="flex flex-row gap-8">
           <div className="flex-[2_2_0%] flex flex-col gap-8">
             <h1 className="text-5xl font-bold font-serif">
@@ -65,22 +61,25 @@ export default async function Home() {
             />
           </div>
         </div>
-
-        <div className="flex flex-row mx-auto h-24 w-min mb-20">
-          <FlowersAndLeaves />
-        </div>
       </div>
 
       <div>
         <h1 className="text-5xl font-bold font-serif">Projects</h1>
-        <div className="flex flex-col mt-6 py-6 gap-12">
+        <div className="flex flex-col mt-6 py-6 gap-24">
           {HOME_PROJECTS.map((project, i) => (
             <ProjectCard project={project} key={project.slug} divider />
           ))}
         </div>
         <Link href="/projects">
-          <Button compact={false}>View All Projects</Button>
+          <Button>View All Projects</Button>
         </Link>
+      </div>
+
+      <div className="mx-auto w-min">
+        <div className="flex flex-row gap-2 -mb-28">
+          <FlowersAndLeaves />
+        </div>
+        <RandomDivider />
       </div>
 
       <div>
@@ -91,7 +90,7 @@ export default async function Home() {
           ))}
         </div>
         <Link href="/blog">
-          <Button compact={false}>View All Posts</Button>
+          <Button>View All Posts</Button>
         </Link>
       </div>
 
