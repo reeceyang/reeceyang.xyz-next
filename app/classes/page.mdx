@@ -7,6 +7,21 @@ MIT classes I’ve taken.
 
 ### By Semester
 
+Fall 2024:
+
+*   3.091 – Intro to Solid-State Chemistry
+*   6.1060 – Software Performance Engineering
+*   6.5830 – Database Systems
+*   6.UAT – Oral Communication
+*   21W.759 – Writing Science Fiction
+
+Spring 2024:
+
+*   6.1200 – Math For Computer Science
+*   6.1800 – Computer Systems Engineering
+*   21G.108 – Chinese II (Streamlined)
+*   21W.766 –	Writing Fantasy
+
 Fall 2023:
 
 *   6.100B – Introduction to Computational Thinking and Data Science
@@ -58,8 +73,12 @@ Fall 2021:
 <table>
   <tbody>
     <tr>
+      <td>3</td>
+      <td>3.091</td>
+    </tr>
+    <tr>
       <td>6</td>
-      <td>6.006, 6.009, 6.148, 6.4100, 6.9610, 6.1020, 6.0004, 6.100B, 6.1910, 6.2020</td>
+      <td>6.006, 6.009, 6.148, 6.4100, 6.9610, 6.1020, 6.0004, 6.100B, 6.1910, 6.2020, 6.1200, 6.1800, 6.1060, 6.5830, 6.1060, 6.5830, 6.UAT</td>
     </tr>
     <tr>
       <td>9</td>
@@ -75,7 +94,7 @@ Fall 2021:
     </tr>
     <tr>
       <td>21</td>
-      <td>21G.049, 21W.755</td>
+      <td>21G.049, 21W.755, 21G.108, 21W.766, 21W.759</td>
     </tr>
     <tr>
       <td>CC</td>
@@ -94,15 +113,15 @@ Fall 2021:
   <tbody>
     <tr>
       <td>S</td>
-      <td>6.148, CMS.S61, 12.409, 21G.049, 6.9610, 21W.755, 6.0004, 6.1910</td>
+      <td>6.148, CMS.S61, 12.409, 21G.049, 6.9610, 21W.755, 6.0004, 6.1910, 21G.108, 21W.759, 6.5830</td>
     </tr>
     <tr>
       <td>A</td>
-      <td>6.009, CC.1802, 9.85, 9.53, 9.35, 18.C06, 6.2020</td>
+      <td>6.009, CC.1802, 9.85, 9.53, 9.35, 18.C06, 6.2020, 6.1200, 6.1800, 21W.766, 6.UAT, 6.1060</td>
     </tr>
     <tr>
       <td>B</td>
-      <td>6.006, 9.00, 9.01, CC.802, 6.4100, 6.1020, 6.100B</td>
+      <td>6.006, 9.00, 9.01, CC.802, 6.4100, 6.1020, 6.100B, 3.091</td>
     </tr>
     <tr>
       <td>C</td>
@@ -119,6 +138,6 @@ Fall 2021:
 
 import MdxLayout from "@/components/MdxLayout";
 
-export default ({children }) => {
-  return <MdxLayout meta={{title: frontmatter.title, date: frontmatter.date, categories: frontmatter.categories}}>{children}</MdxLayout>;
+export default ({ children }) => {
+  return <MdxLayout meta={{ title: frontmatter.title, date: frontmatter.date, categories: frontmatter.categories }}>{children}</MdxLayout>;
 }
