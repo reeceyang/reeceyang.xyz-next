@@ -17,9 +17,10 @@ const DESIGN_PROJECTS = [
 const latesProject = {
   url: "https://lates.vercel.app",
   image_src: "/lates.png",
-  description: "Plan menus and ordering food for a co-op meal plan.",
+  description: "Plan menus and order food for a co-op meal plan.",
   title: "Lates",
   slug: "lates",
+  github_url: "https://github.com/reeceyang/lates",
   categories: ["TypeScript", "React"],
 };
 
