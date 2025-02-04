@@ -2,7 +2,7 @@ export const PROJECTS: Project[] = [
   {
     url: "https://lilypad.bleebo.dev",
     image_src: "/lilypad.png",
-    description: "Coming soon.",
+    description: "Personal finance app.",
     title: "Lilypad Finance",
     slug: "lilypad",
     categories: ["TypeScript", "React"],
@@ -41,6 +41,14 @@ export const PROJECTS: Project[] = [
     title: "BobaBoss",
     slug: "bobaboss",
     categories: ["React", "MongoDB", "Express"],
+  },
+  {
+    url: "https://kai.bleebo.dev",
+    image_src: "/kai.png",
+    description: "Personal website I designed for a friend.",
+    title: "Kai",
+    slug: "kai",
+    categories: ["JavaScript", "HTML", "CSS"],
   },
   {
     url: "https://beaverlens.reeceyang.xyz",
