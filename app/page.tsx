@@ -1,7 +1,6 @@
 import BlogCard from "@/components/BlogCard";
 import ProjectCard from "@/components/ProjectCard";
 import { getSortedPostsData } from "@/utils/posts";
-import Image from "next/image";
 import Link from "next/link";
 import { PROJECTS } from "./projects";
 import SocialLinks from "@/components/SocialLinks";
@@ -38,7 +37,7 @@ export default async function Home() {
   return (
     <div className="flex flex-col gap-48">
       <div className="mt-[16vh] mb-[18vh]">
-        <div className="flex flex-row gap-8">
+        <div className="flex flex-col sm:flex-row gap-8">
           <div className="flex-[2_2_0%] flex flex-col gap-8">
             <h1 className="text-5xl font-bold font-serif">
               Hi, I&rsquo;m Reece!
@@ -51,14 +50,8 @@ export default async function Home() {
               <Contact />
             </div>
           </div>
-          <div className="flex-[1_1_0%] m-auto avatar hidden sm:block">
-            <Image
-              className="rounded"
-              src={"/profile_square.jpg"}
-              alt={"profile"}
-              width="300"
-              height="300"
-            />
+          <div className="flex-[1_1_0%] m-auto flex flex-row gap-2">
+            <FlowersAndLeaves />
           </div>
         </div>
       </div>
@@ -76,9 +69,6 @@ export default async function Home() {
       </div>
 
       <div className="mx-auto w-min">
-        <div className="flex flex-row gap-2 -mb-28">
-          <FlowersAndLeaves />
-        </div>
         <RandomDivider />
       </div>
 
