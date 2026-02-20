@@ -2,7 +2,6 @@ import ProjectCard from "@/components/ProjectCard";
 import { PROJECTS } from "../projects";
 
 const DESIGN_PROJECTS = [
-  "lilypad",
   "symsic",
   "bobaboss",
   "kai",

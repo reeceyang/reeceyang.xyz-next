@@ -1,13 +1,5 @@
 export const PROJECTS: Project[] = [
   {
-    url: "https://lilypad.bleebo.dev",
-    image_src: "/lilypad.png",
-    description: "Personal finance app.",
-    title: "Lilypad Finance",
-    slug: "lilypad",
-    categories: ["TypeScript", "React"],
-  },
-  {
     github_url: "https://github.com/reeceyang/symsic",
     image_src: "/symsic.png",
     description: "Fast symbolic music search engine.",
