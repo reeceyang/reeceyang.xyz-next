@@ -14,9 +14,7 @@ const HOME_PROJECTS = PROJECTS.filter(({ slug }) => HOME_SLUGS.includes(slug));
 
 const Bio = () => (
   <div className="prose max-w-md">
-    I&rsquo;m an undergraduate at <strong>MIT</strong> studying{" "}
-    <strong>Computer Science</strong>, interested in{" "}
-    <strong>full-stack engineering</strong> and <strong>UI/UX design</strong>.
+    software engineer at <Link href="https://www.convex.dev/">Convex</Link>
   </div>
 );
 
