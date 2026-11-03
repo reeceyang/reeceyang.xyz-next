@@ -5,30 +5,27 @@ import ClickSoundEffectTrigger from "./ClickSoundEffectTrigger";
 
 const Header = () => (
   <>
-    <div className="navbar min-h-min mb-12 fixed glass z-50">
-      <ul className="menu menu-md menu-horizontal max-w-4xl m-auto w-full p-0">
+    <div className="navbar min-h-min mb-12 z-50">
+      <ul className="menu menu-md menu-horizontal max-w-4xl m-auto w-fit p-0">
+        <ClickSoundEffectTrigger>
+          <li>
+            <Link href="/projects">r</Link>
+          </li>
+        </ClickSoundEffectTrigger>
         <ClickSoundEffectTrigger>
           <li>
             <Link href="/" className="font-bold">
-              Reece Yang
+              ♥
             </Link>
           </li>
         </ClickSoundEffectTrigger>
-
         <ClickSoundEffectTrigger>
           <li>
-            <Link href="/projects">Projects</Link>
-          </li>
-        </ClickSoundEffectTrigger>
-
-        <ClickSoundEffectTrigger>
-          <li>
-            <Link href="/blog">Blog</Link>
+            <Link href="/blog">y</Link>
           </li>
         </ClickSoundEffectTrigger>
       </ul>
     </div>
-    <div className="h-24" />
   </>
 );
 

@@ -6,7 +6,7 @@ import AudioElements from "@/components/AudioElements";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
-  title: "Reece Yang",
+  title: "♥",
 };
 
 export default function RootLayout({
