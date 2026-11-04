@@ -1,4 +1,4 @@
-const SYMBOLS = ["❃", "✧", "✻", "✼", "❈", "❉", "❊", "❋", "❂", "❁", "❀", "❦"];
+const SYMBOLS = ["ᐢ. .ᐢ", "♡", "・ω・", "•ﻌ•", "⚘", "𓅪", "✰", "ʚïɞ", "❀", "❦", "✿", "☘︎ ݁"];
 
 const RandomDivider = () => {
   const divider = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];

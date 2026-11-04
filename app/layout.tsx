@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import AudioElements from "@/components/AudioElements";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -18,15 +17,18 @@ export default function RootLayout({
     <html data-theme="retro" lang="en">
       <head>
         <link rel="stylesheet" href="https://use.typekit.net/baw1rzu.css" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className="bg-base-200">
         <AudioElements />
         <div className="flex flex-col min-h-screen">
           <Header />
-          <main className="container max-w-4xl m-auto px-4 overflow-clip flex-grow">
+          <main className="container max-w-4xl m-auto px-4 overflow-clip flex-grow flex flex-col pb-10">
             {children}
           </main>
-          <Footer />
         </div>
         <Analytics />
       </body>

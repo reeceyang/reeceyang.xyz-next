@@ -6,12 +6,10 @@ import RandomDivider from "./RandomDivider";
 export const ProjectMockup = ({ project }: { project: Project }) => {
   return (
     project.image_src && (
-      <div className="mockup-browser bg-base-200 shadow-xl glass flex-[2_0_20rem] ">
-        <div className="mockup-browser-toolbar">
-          {project.url && <div className="input">{project.url}</div>}
-        </div>
+      <div className="flex-[2_0_20rem]">
         {project.image_src && (
           <Image
+            className="rounded-sm shadow-xl"
             width="1600"
             height="900"
             src={project.image_src}

@@ -1,5 +1,10 @@
 import BlogCard from "@/components/BlogCard";
 import { getSortedPostsData } from "@/utils/posts";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog",
+};
 
 export default async function Blog() {
   const allPostsData = await getSortedPostsData();

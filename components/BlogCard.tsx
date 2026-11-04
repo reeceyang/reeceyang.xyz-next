@@ -21,16 +21,6 @@ export default function BlogCard({
         </ClickSoundEffectTrigger>
         <span>{new Date(blogPost.date).toLocaleDateString()}</span>
         <p className="line-clamp-2">{blogPost.excerpt}</p>
-        <div className="card-actions">
-          {blogPost.categories.map((category) => (
-            <div
-              className="badge badge-outline"
-              key={`${blogPost.slug} ${category}`}
-            >
-              {category}
-            </div>
-          ))}
-        </div>
       </div>
       {divider && <RandomDivider />}
     </>
